@@ -2,11 +2,11 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
-    <title>공지사항</title>
+    <title>QnA 게시판</title>
   </head>
   <body>
     <header>
@@ -15,21 +15,31 @@
         <a href="register.html">회원가입</a>
       </div>
       <div class="header-main">
-        <h1 class="header-title"><a href="index.html">게시게시판</a></h1>
+        <h1 class="header-title"><a href="index.html">CodeSnack</a></h1>
       </div>
     </header>
 
     <nav>
-      <div class="nav-left">
-        <a href="index.html">홈</a> | <a href="free-board.html">자유게시판</a> |
-        <a href="information_board.html">정보게시판</a>
-      </div>
+      <!-- 검색 창 추가 -->
       <div class="search-box">
         <input type="text" placeholder="검색어를 입력하세요" />
         <button type="button">검색</button>
       </div>
+      <div class="nav-left">
+        <a href="index.html">홈</a> 
+         <a href="notice-board.html">공지사항</a> 
+        <a href="free-board.html">자유 게시판</a> 
+        <a href="market-board.html">장터 게시판</a> 
+        <a href="suggestions-board.html">건의 게시판</a> 
+        <a href="qna-board.html">QnA 게시판</a>
+      </div>
+      <button
+        class="write-post-btn"
+        onclick="location.href='write-post-page.html'"
+      >
+        글 쓰기
+      </button>
     </nav>
-
     <section>
     <form>
         <div class="text">
