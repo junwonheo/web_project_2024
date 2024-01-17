@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>아이디 찾기</title>
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <title>비밀번호 찾기</title>
 </head>
+
 <body>
-    <header>
+    <header id="header-top">
         <div class="header-top">
             <a href="login.html">로그인</a>
             <a href="register.html">회원가입</a>
@@ -34,22 +36,37 @@
     </nav>
 
     <section id="login-section">
-        <h2>비밀번호 찾기</h2>
+        <h2>비밀번호 변경</h2>
 
-        <form action="" method="post">
+        <form action="login-process.php" method="post">
             <label for="username">아이디:</label>
             <input type="text" id="username" name="username" required>
 
-            <label for="nickname">닉네임:</label>
-            <input type="password" id="nickname" name="nickname" required>
+            <label for="name">이름:</label>
+            <input type="text" id="name" name="name" required>
 
-            <button type="submit">아이디 찾기</button>
+            <label for="qna">질문 및 답변:</label>
+            <select>
+                <option value="1" selected>출생지는 어디인가요?</option>
+                <option value="2">가장 친한 친구의 이름은 무엇인가요?</option>
+                <option value="3">좋아하는 동물은 무엇인가요?</option>
+            </select><br>
+            <input type="text" id="qna" name="qna" required><br>
 
+            <label for="nickname">비밀번호 변경:</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="nickname">비밀번호 변경 확인:</label>
+            <input type="password" id="password_re" name="password_re" required>
+
+            <button type="submit">비밀번호 변경</button>
         </form>
+
     </section>
 
     <footer>
         © 2024 CodeSnack. All rights reserved.
     </footer>
 </body>
+
 </html>

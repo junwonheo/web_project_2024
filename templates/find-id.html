@@ -4,12 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>글쓰기</title>
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <title>아이디 찾기</title>
 </head>
 
 <body>
-
     <header>
         <div class="header-top">
             <a href="login.html">로그인</a>
@@ -36,32 +35,24 @@
 
     </nav>
 
-    <section id="upload_content">
-        <form enctype="multipart/form-data" action="your-upload-handler.php" method="post">
-            <div id="write-post-top">
-                <select id="board-select" name="board">
-                    <option value="free-board">자유게시판</option>
-                    <option value="information_board">정보게시판</option>
-                </select>
-                <input type="text" id="title" name="title" placeholder="제목을 입력하세요" required>
-            </div>
-            <label for="content">내용:</label>
-            <textarea id="content_area" name="content" rows="8" required></textarea>
-            <div id="upload_container">
-                <div>
-                    <label for="image">이미지 첨부:</label>
-                    <input type="file" id="image" name="image" accept="image/*">
-                </div>
-                
-                <button id="upload_content_button" type="submit">글 올리기</button>
-            </div>
+    <section id="login-section">
+        <h2>비밀번호 찾기</h2>
+
+        <form action="" method="post">
+            <label for="username">아이디:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="nickname">닉네임:</label>
+            <input type="password" id="nickname" name="nickname" required>
+
+            <button type="submit">아이디 찾기</button>
+
         </form>
     </section>
 
     <footer>
         © 2024 CodeSnack. All rights reserved.
     </footer>
-
 </body>
 
 </html>
