@@ -1,4 +1,4 @@
-package com.example.posts;
+package com.example.codesnack.posts;
 
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.example.comments;
+package com.example.codesnack.comments;
 
 import org.springframework.stereotype.Repository;
 

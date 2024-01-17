@@ -1,8 +1,8 @@
-package com.example.posts;
+package com.example.codesnack.users;
 
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class PostController {
+public class UserController {
 
 }

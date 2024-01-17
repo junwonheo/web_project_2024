@@ -1,10 +1,10 @@
-package com.example.posts;
+package com.example.codesnack.users;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class PostDTO {
+public class UserDTO {
 
 }
