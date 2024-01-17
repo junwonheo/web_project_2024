@@ -1,6 +1,5 @@
-package com.example.codesnack.comments;
+package com.example.codesnack.notices;
 
-import com.example.codesnack.posts.Post;
 import com.example.codesnack.users.User;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -9,19 +8,14 @@ import java.sql.Timestamp;
 
 @Entity
 @Data
-public class Comment {
+public class Notice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "commentID")
-    private Long commentId;
+    @Column(name = "noticeId")
+    private Long noticeId;
 
-    @ManyToOne
-    @JoinColumn(name = "userID")
-    private User user;
-
-    @ManyToOne
-    @JoinColumn(name = "postID")
-    private Post post;
+    @Column(name = "title")
+    private String title;
 
     @Column(name = "content")
     private String content;
