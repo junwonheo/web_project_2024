@@ -1,4 +1,4 @@
 <?php
 
-include 'frontend/index.html'
+include 'frontend/index.html';
 ?>
