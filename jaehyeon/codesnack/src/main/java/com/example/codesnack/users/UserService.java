@@ -1,4 +1,4 @@
-package com.example.users;
+package com.example.codesnack.users;
 
 import org.springframework.stereotype.Service;
 
