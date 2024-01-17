@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+    <title>CodeSnack</title>
+</head>
+<body>
+
+<header>
+    <div class="header-top">
+        <a th:href="@{/login}">로그인</a>
+        <a th:href="@{/register}">회원가입</a>
+    </div>
+    <div class="header-main">
+        <h1 class="header-title"><a th:href="@{/}">CodeSnack</a></h1>
+    </div>
+</header>
+
+<nav>
+    
+    <!-- 검색 창 추가 -->
+    <div class="search-box">
+        <input type="text" placeholder="검색어를 입력하세요">
+        <button type="button">검색</button>
+    </div>
+    <div class="nav-left">
+        <a th:href="@{/}">홈</a> | <a th:href="@{/noticeBoard}">공지사항</a> |
+        <a th:href="@{/freeBoard}">자유 게시판</a> |
+        <a th:href="@{/marketBoard}">장터 게시판</a> |
+        <a th:href="@{/suggestionsBoard}">건의 게시판</a> |
+        <a th:href="@{/qnaBoard}">QnA 게시판</a> |
+        <a th:href="@{/pointShop}">포인트샵</a>
+    </div>
+</nav>
+
+<section>
+    <a th:href="@{/noticeBoard}">
+        <article>
+            <h2>
+                공지 사항
+            </h2>
+            <p>게시물 내용 1</p>
+        </article>
+    </a>
+    <a th:href="@{/freeBoard}">
+        <article>
+            <h2>
+                자유 게시판
+            </h2>
+            <p>게시물 내용 2</p>
+        </article>    
+    </a>
+    <a th:href="@{/marketBoard}">
+        <article>
+            <h2>
+                장터 게시판
+            </h2>
+            <p>게시물 내용 3</p>
+        </article>
+        
+    </a>
+    <a th:href="@{/suggestionsBoard}">
+        <article>
+            <h2>
+                건의 게시판
+            </h2>
+            <p>게시물 내용 4</p>
+        </article>
+        
+    </a>
+    <a th:href="@{/qnaBoard}">
+        <article>
+            <h2>
+                QnA 게시판
+            </h2>
+            <p>게시물 내용 5</p>
+        </article>
+        
+    </a>
+    <!-- 추가 게시물을 필요에 따라 추가 -->
+</section>
+
+<footer>
+    © 2024 CodeSnack. All rights reserved.
+</footer>
+
+</body>
+</html>

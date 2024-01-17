@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" th:href="@{/css/styles.css}" />
+        <title>비밀번호 찾기</title>
+    </head>
+    <body>
+        <header>
+            <div class="header-top">
+                <a th:href="@{/login}">로그인</a>
+                <a th:href="@{/register}">회원가입</a>
+            </div>
+            <div class="header-main">
+                <h1 class="header-title"><a th:href="@{/}">CodeSnack</a></h1>
+            </div>
+        </header>
+
+        <nav>
+            <div class="nav-left">
+                <a th:href="@{/}">홈</a> | <a th:href="@{/noticeBoard}">공지사항</a> |
+                <a th:href="@{/freeBoard}">자유 게시판</a> |
+                <a th:href="@{/marketBoard}">장터 게시판</a> |
+                <a th:href="@{/suggestionsBoard}">건의 게시판</a> |
+                <a th:href="@{/qnaBoard}">QnA 게시판</a> |
+                <a th:href="@{/pointShop}">포인트샵</a>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="검색어를 입력하세요">
+                <button type="button">검색</button>
+            </div>
+    
+        </nav>
+
+    <section id="login-section">
+        <h2>비밀번호 변경</h2>
+
+        <form action="login-process.php" method="post">
+            <label for="username">아이디:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="name">이름:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="qna">질문 및 답변:</label>
+            <select>
+                <option value="1" selected>출생지는 어디인가요?</option>
+                <option value="2">가장 친한 친구의 이름은 무엇인가요?</option>
+                <option value="3">좋아하는 동물은 무엇인가요?</option>
+            </select><br>
+            <input type="text" id="qna" name="qna" required><br>
+
+            <label for="nickname">비밀번호 변경:</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="nickname">비밀번호 변경 확인:</label>
+            <input type="password" id="password_re" name="password_re" required>
+            
+            <button type="submit">비밀번호 변경</button>
+        </form>
+
+    </section>
+
+    <footer>
+        © 2024 CodeSnack. All rights reserved.
+    </footer>
+</body>
+</html>
