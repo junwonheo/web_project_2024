@@ -6,29 +6,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
     <title>포인트샵</title>
 </head>
 
 <body>
     <header>
         <div class="header-top">
-            <a href="login.html">로그인</a>
-            <a href="register.html">회원가입</a>
+            <a th:href="@{/login}">로그인</a>
+            <a th:href="@{/register}">회원가입</a>
         </div>
         <div class="header-main">
-            <h1 class="header-title"><a href="index.html">CodeSnack</a></h1>
+            <h1 class="header-title"><a th:href="@{/}">CodeSnack</a></h1>
         </div>
     </header>
 
     <nav>
         <div class="nav-left">
-            <a href="index.html">홈</a> | <a href="notice-board.html">공지사항</a> |
-            <a href="free-board.html">자유 게시판</a> |
-            <a href="market-board.html">장터 게시판</a> |
-            <a href="suggestions-board.html">건의 게시판</a> |
-            <a href="qna-board.html">QnA 게시판</a> |
-            <a href="pointshop.html">포인트샵</a>
+            <a th:href="@{/}">홈</a> | <a th:href="@{/noticeBoard}">공지사항</a> |
+            <a th:href="@{/freeBoard}">자유 게시판</a> |
+            <a th:href="@{/marketBoard}">장터 게시판</a> |
+            <a th:href="@{/suggestionsBoard}">건의 게시판</a> |
+            <a th:href="@{/qnaBoard}">QnA 게시판</a> |
+            <a th:href="@{/pointShop}">포인트샵</a>
         </div>
         <div class="search-box">
             <input type="text" placeholder="검색어를 입력하세요">
