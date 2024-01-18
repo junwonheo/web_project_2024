@@ -1,6 +1,6 @@
 package com.example.codesnack.posts;
 
-import com.example.codesnack.users.User;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,10 +8,12 @@ import java.sql.Timestamp;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class PostDTO {
+
     private Long postId;
-    private User user;
-    private Long postType;
+    private Long userId;
+    private int posttype;
     private String title;
     private String content;
     private String image;

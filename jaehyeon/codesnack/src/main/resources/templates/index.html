@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,8 +10,16 @@
 
 <header>
     <div class="header-top">
-        <a th:href="@{/login}">로그인</a>
-        <a th:href="@{/register}">회원가입</a>
+        <!-- 로그인 성공 시에만 유저의 닉네임과 로그아웃 버튼을 표시 -->
+        <span th:if="${session.user}">
+            <span th:text="${session.user}">User</span>
+            <a th:href="@{/logout}">로그아웃</a>
+        </span>
+        <!-- 로그인하지 않은 경우에 로그인과 회원가입 버튼을 표시 -->
+        <span th:unless="${session.user}">
+            <a th:href="@{/login}">로그인</a>
+            <a th:href="@{/register}">회원가입</a>
+        </span>
     </div>
     <div class="header-main">
         <h1 class="header-title"><a th:href="@{/}">CodeSnack</a></h1>

@@ -183,7 +183,7 @@ footer {
     background-color: #e6b800;
 }
 
-#check_button {
+#check_button1 {
     padding: 10px;
     color: #333;
     border: none;
@@ -191,7 +191,19 @@ footer {
     cursor: pointer;
 }
 
-#check_button:hover {
+#check_button2 {
+    padding: 10px;
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#check_button1:hover {
+    background-color: #d4d4d4;
+}
+
+#check_button2:hover {
     background-color: #d4d4d4;
 }
 
