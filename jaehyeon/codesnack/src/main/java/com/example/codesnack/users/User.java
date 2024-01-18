@@ -1,35 +1,39 @@
 package com.example.codesnack.users;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Table(name = "user")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "userId")
     private Long userId;
 
-    @Column(name = "userName")
-    private String userName;
+    @Column(nullable = false)
+    private String username;
 
-    @Column(name = "id")
+    @Column(nullable = false, length = 255)
     private String id;
 
-    @Column(name = "passwd")
+    @Column(nullable = false)
     private String passwd;
 
-    @Column(name = "nickname")
+    @Column(nullable = false)
     private String nickname;
 
-    @Column(name = "question")
-    private Long question;
+    @Column(nullable = false)
+    private int question;
 
-    @Column(name = "answer")
+    @Column(nullable = false)
     private String answer;
+
+    @Column(nullable = false, columnDefinition = "INT DEFAULT 500")
+    private int point;
 }

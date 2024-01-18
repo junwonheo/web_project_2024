@@ -1,8 +1,16 @@
 package com.example.codesnack.users;
 
-import org.springframework.stereotype.Service;
+import java.util.Optional;
 
-@Service
-public class UserService {
+public interface UserService {
+    Optional<User> saveUser(UserDTO userDTO);
+    Optional<User> getUserById(Long userId);
+    User authenticateUser(UserDTO userDTO);
+
+    User getUserByNickname(String nickname);
+
+    public boolean isIdUnique(String id);
+
+    public boolean isNicknameUnique(String nickname);
 
 }

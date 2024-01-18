@@ -2,34 +2,41 @@ package com.example.codesnack.posts;
 
 import com.example.codesnack.users.User;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
 
 @Entity
+@Table(name = "post")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Post {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "postId")
     private Long postId;
 
-    @ManyToOne
-    @JoinColumn(name = "userId")
-    private User user;
+    @Column(nullable = false)
+    private Long userId;
 
-    @Column(name = "postType")
-    private Long postType;
+    @Column(nullable = false)
+    private int posttype;
 
-    @Column(name = "title")
+    @Column(nullable = false)
     private String title;
 
-    @Column(name = "content")
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
 
-    @Column(name = "image")
     private String image;
 
-    @Column(name = "timestamp")
+    @Column(nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Timestamp timestamp;
+
+    @ManyToOne
+    @JoinColumn(name = "userId", insertable = false, updatable = false)
+    private User user;
 }
