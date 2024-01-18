@@ -17,14 +17,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $query = "SELECT * FROM user WHERE id = '$id' AND passwd = '$pw'";
     $result = $mysqli->query($query);
 
-    if ($result->num_rows > 0) {
+    if ($result -> num_rows > 0) {
         session_start();
         $_SESSION['id'] = $id;
-        echo "<script>location.href='templates/index.html';</script>";
+        echo "<script>location.href = 'templates/index.html';</script>";
     } else {
         echo "<script>alert('아이디 또는 비밀번호가 존재하지 않습니다.');</script>";
-        include 'templates/login.html';
-        }
-
-    $mysqli->close();
+        echo "<script>location.href = 'templates/login.html';</script>";
+    }
 }
