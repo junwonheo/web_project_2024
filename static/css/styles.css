@@ -183,18 +183,6 @@ footer {
     background-color: #e6b800;
 }
 
-#check_button {
-    padding: 10px;
-    color: #333;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#check_button:hover {
-    background-color: #d4d4d4;
-}
-
 #register-section p {
     margin-top: 10px;
 }

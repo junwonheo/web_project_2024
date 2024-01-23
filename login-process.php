@@ -1,9 +1,10 @@
 <?php
 // 오류 출력 (삭제)
 error_reporting(E_ALL);
-ini_set("display_errors",1);
+ini_set("display_errors", 1);
 
-function searchUser($id, $pw) {
+function searchUser($id, $pw)
+{
     $db_host = "localhost";
     $db_user = "codesnack";
     $db_password = "";
@@ -23,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $searchResult = searchUser($id, $pw);
 
-    if ($searchResult -> num_rows > 0) {
+    if ($searchResult->num_rows > 0) {
         session_start();
         $_SESSION['id'] = $id;
         echo "<script>location.href = 'templates/index.html';</script>";
