@@ -16,7 +16,7 @@ if(isset($_POST['username'])&&isset($_POST['id'])&&isset($_POST['nickname'])
     $question = $_POST['missQuestion'];
 
     if($passwd != $confirmPasswd){
-        die("<script>alert('비밀번호가 다릅니다!'); location.href = '/index.php?page=register.html';</script>");
+        die("<script>alert('비밀번호가 다릅니다!'); location.href = '/index.php?page=register.html.twig';</script>");
     }
     $result = mysqli_query($conn,"insert into user (userName, id, passwd, nickname, question, answer, point)
     values ('$username','$id','$passwd','$nickname',CAST('$question' as unsigned),'$answer',500);");
