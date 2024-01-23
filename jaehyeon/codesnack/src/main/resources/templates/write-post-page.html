@@ -10,57 +10,82 @@
 
 <body>
 
-    <header>
-        <div class="header-top">
-            <a th:href="@{/login}">로그인</a>
-            <a th:href="@{/register}">회원가입</a>
-        </div>
-        <div class="header-main">
-            <h1 class="header-title"><a th:href="@{/}">CodeSnack</a></h1>
-        </div>
-    </header>
+<header>
+    <div class="header-top">
+        <a th:href="@{/login}">로그인</a>
+        <a th:href="@{/register}">회원가입</a>
+    </div>
+    <div class="header-main">
+        <h1 class="header-title"><a th:href="@{/}">CodeSnack</a></h1>
+    </div>
+</header>
 
-    <nav>
-        <div class="nav-left">
-            <a th:href="@{/}">홈</a> | <a th:href="@{/noticeBoard}">공지사항</a> |
-            <a th:href="@{/freeBoard}">자유 게시판</a> |
-            <a th:href="@{/marketBoard}">장터 게시판</a> |
-            <a th:href="@{/suggestionsBoard}">건의 게시판</a> |
-            <a th:href="@{/qnaBoard}">QnA 게시판</a> |
-            <a th:href="@{/pointShop}">포인트샵</a>
-        </div>
-        <div class="search-box">
-            <input type="text" placeholder="검색어를 입력하세요">
-            <button type="button">검색</button>
-        </div>
+<nav>
+    <div class="nav-left">
+        <a th:href="@{/}">홈</a> | <a th:href="@{/noticeBoard}">공지사항</a> |
+        <a th:href="@{/freeBoard}">자유 게시판</a> |
+        <a th:href="@{/marketBoard}">장터 게시판</a> |
+        <a th:href="@{/suggestionsBoard}">건의 게시판</a> |
+        <a th:href="@{/qnaBoard}">QnA 게시판</a> |
+        <a th:href="@{/pointShop}">포인트샵</a>
+    </div>
+    <div class="search-box">
+        <input type="text" placeholder="검색어를 입력하세요">
+        <button type="button">검색</button>
+    </div>
+</nav>
 
-    </nav>
-
-    <section id="upload_content">
-        <form enctype="multipart/form-data" action="your-upload-handler.php" method="post">
-            <div id="write-post-top">
-                <select id="board-select" name="board">
-                    <option value="free-board">자유게시판</option>
-                    <option value="information_board">정보게시판</option>
-                </select>
-                <input type="text" id="title" name="title" placeholder="제목을 입력하세요" required>
+<section id="upload_content">
+    <form id="postForm" method="post">
+        <div id="write-post-top">
+            <select id="board-select" name="board">
+                <option value=1>공지사항</option>
+                <option value=2>자유 게시판</option>
+                <option value=3>장터 게시판</option>
+                <option value=4>건의 게시판</option>
+                <option value=5>QnA 게시판</option>
+            </select>
+            <input type="text" id="title" name="title" placeholder="제목을 입력하세요" required>
+        </div>
+        <label for="content_area">내용:</label>
+        <textarea id="content_area" name="content" rows="8" required></textarea>
+        <div id="upload_container">
+            <div>
+                <label for="image">이미지 첨부:</label>
+                <input type="file" id="image" name="image" accept="image/*">
             </div>
-            <label for="content">내용:</label>
-            <textarea id="content_area" name="content" rows="8" required></textarea>
-            <div id="upload_container">
-                <div>
-                    <label for="image">이미지 첨부:</label>
-                    <input type="file" id="image" name="image" accept="image/*">
-                </div>
-                
-                <button id="upload_content_button" type="submit">글 올리기</button>
-            </div>
-        </form>
-    </section>
+            <button id="upload_content_button" type="button" onclick="submitForm()">글 올리기</button>
+        </div>
+    </form>
+    <script th:inline="javascript">
+        function submitForm() {
+            var form = document.getElementById('postForm');
+            var actionUrl = '/api/board/post';
+            var formData = new FormData(form);
 
-    <footer>
-        © 2024 CodeSnack. All rights reserved.
-    </footer>
+            // 이미지 추가
+            var imageInput = document.getElementById('image');
+            formData.append('image', imageInput.files[0]);
+
+            fetch(actionUrl, {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+
+                // 글 작성이 성공적으로 완료되면 이전 페이지로 이동
+                window.history.back();
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</section>
+
+<footer>
+    © 2024 CodeSnack. All rights reserved.
+</footer>
 
 </body>
 
