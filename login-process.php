@@ -3,10 +3,7 @@
 error_reporting(E_ALL);
 ini_set("display_errors",1);
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $id = $_POST['username'];
-    $pw = $_POST['password'];
-
+function searchUser($id, $pw) {
     $db_host = "localhost";
     $db_user = "codesnack";
     $db_password = "";
@@ -17,7 +14,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $query = "SELECT * FROM user WHERE id = '$id' AND passwd = '$pw'";
     $result = $mysqli->query($query);
 
-    if ($result -> num_rows > 0) {
+    return $result;
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $id = $_POST['username'];
+    $pw = $_POST['password'];
+
+    $searchResult = searchUser($id, $pw);
+
+    if ($searchResult -> num_rows > 0) {
         session_start();
         $_SESSION['id'] = $id;
         echo "<script>location.href = 'templates/index.html';</script>";
