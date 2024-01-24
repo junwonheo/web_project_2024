@@ -2,8 +2,9 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const path = require('path')
+const dbconfig = require('./conifg/dbconfig.json')
 const bodyParser = require('body-parser');
-app.use(bodyParser.json()); //json으로 파싱
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
@@ -17,17 +18,19 @@ app.listen(port, () => {
 });
 const mysql = require('mysql2');
 const pool = mysql.createPool({
-  host: '127.0.0.1',
-  port: '3306',
-  user: 'codesnack',
-  database: 'codesnack',
-  password: 'codesnack',
+  host: dbconfig.host,
+  port: dbconfig.port,
+  user: dbconfig.user,
+  database: dbconfig.database,
+  password: dbconfig.password,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0
 })
+
 const promisePool = pool.promise();
-app.post('/process/adduser', (req, res) => {
+//회원가입
+app.post('/html/register.html', (req, res) => {
   promisePool.query(`
   INSERT INTO codesnack.user 
   ( username, id, passwd, nickname, question, answer, point)
@@ -36,8 +39,7 @@ app.post('/process/adduser', (req, res) => {
   '${req.body.username}', '${req.body.id}', '${req.body.password}', 
   '${req.body.nickname}', '${req.body.question}', '${req.body.miss}', 500)
 `).then(() => {
-    const body = { success: true, msg: "회원가입 성공!" };;
-    return res.json(body);
+  res.redirect('http://localhost:3000/html/login.html');
   })
     .catch(err => {
       console.log(err);
@@ -47,7 +49,52 @@ app.post('/process/adduser', (req, res) => {
       }
     });
 });
+//아이디 중복
+app.get('/checkduplicate1', (req, res) => {
+  const id = req.query.id; // 클라이언트로부터 전달받은 아이디
 
+  // 아이디 중복 확인을 위해 데이터베이스에서 아이디 조회
+  promisePool.query('SELECT * FROM user WHERE id = ?', [id])
+    .then(([rows]) => {
+      // 중복된 아이디가 이미 존재하는 경우
+      const duplicate = rows.length > 0;
+      const response = { duplicate };
+      return res.json(response);
+    })
+    .catch(err => {
+      console.error(err);
+      const response = { duplicate: false };
+      return res.json(response);
+    });
+});
+//닉네임 중복 
+app.get('/checkduplicate2', (req, res) => {
+  const nickname = req.query.nickname; // 클라이언트로부터 전달받은 닉네임
+
+  // 닉네임 중복 확인을 위해 데이터베이스에서 닉네임 조회
+  promisePool.query('SELECT * FROM user WHERE nickname = ?', [nickname])
+    .then(([rows]) => {
+      // 중복된 닉네임이 이미 존재하는 경우
+      const duplicate = rows.length > 0;
+      const response = { duplicate };
+      return res.json(response);
+    })
+    .catch(err => {
+      console.error(err);
+      const response = { duplicate: false };
+      return res.json(response);
+    });
+});
+app.post('/login/login.html', (req, res) => {
+  const { username, password } = req.body;
+
+  if (username === 'admin' && password === 'password') {
+      res.json({ success: true });
+      res.redirect('http://localhost:3000/html/index.html');
+  } else {
+      res.json({ success: false });
+  }
+});
 
 
 
