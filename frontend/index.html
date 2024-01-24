@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/frontend/styles.css">
+    <title>CodeSnack</title>
+</head>
+<body>
+
+    {% include 'header.html' %}
+
+    {% include 'nav.html' %}
+
+<section>
+    <a href="/index.php?board=notice-board">
+        <article>
+            <h2>
+                공지 사항
+            </h2>
+            <p>게시물 내용 1</p>
+        </article>
+    </a>
+    <a href="/index.php?board=free-board">
+        <article>
+            <h2>
+                자유 게시판
+            </h2>
+            <p>게시물 내용 2</p>
+        </article>    
+    </a>
+    <a href="/index.php?board=market-board">
+        <article>
+            <h2>
+                장터 게시판
+            </h2>
+            <p>게시물 내용 3</p>
+        </article>
+        
+    </a>
+    <a href="/index.php?board=suggestions-board">
+        <article>
+            <h2>
+                건의 게시판
+            </h2>
+            <p>게시물 내용 4</p>
+        </article>
+        
+    </a>
+    <a href="/index.php?board=qna-board">
+        <article>
+            <h2>
+                QnA 게시판
+            </h2>
+            <p>게시물 내용 5</p>
+        </article>
+        
+    </a>
+    <!-- 추가 게시물을 필요에 따라 추가 -->
+</section>
+
+<footer>
+    © 2024 CodeSnack. All rights reserved.
+</footer>
+
+</body>
+</html>

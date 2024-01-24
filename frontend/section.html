@@ -1,0 +1,22 @@
+<section>
+{% for post in posts %}
+    {% if post.postType == boardType%}   {# 0: 공지사항, 1: 자유게시판, 2: 장터게시판, 3: 건의 게시판, 4: QnA 게시판#}
+    <article>
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.content }}</p>
+        <img src="{{post.image}}">
+        <p>Posted by {{post.nickname}} at {{ post.timeStamp }}</p>
+    </article>
+    {% endif %}
+{% endfor %}
+
+{% for i in 1..totalPage %}
+    {% if i == currentpage %}
+    <span>{{i}}</span>
+    {% else %}
+    <div align="center">
+        <a href="?page={{i}}">{{i}}</a>
+    </div>
+    {% endif %}
+{% endfor %}
+</section>

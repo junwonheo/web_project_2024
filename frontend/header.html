@@ -1,0 +1,14 @@
+<header>
+    <div class="header-top">
+      {% if user %}
+      <b>Hello, {{user}}</b>
+
+      {% else %}
+      <a href="/index.php?board=login">로그인</a>
+      <a href="/index.php?board=register">회원가입</a>
+      {% endif %}
+    </div>
+    <div class="header-main">
+      <h1 class="header-title"><a href="/index.php?board=index">CodeSnack</a></h1>
+    </div>
+</header>

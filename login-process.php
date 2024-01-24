@@ -16,7 +16,7 @@ if(isset($_POST['id'])&&isset($_POST['passwd'])){
         $nickname=mysqli_fetch_assoc(mysqli_query($conn,"select nickname from user where id = '$id'"))['nickname'];
         $_SESSION['nickname']=$nickname;
         $_SESSION['userId']=mysqli_fetch_assoc(mysqli_query($conn,"select userId from user where id = '$id'"))['userId'];
-        echo "<script>alert('$_SESSION[userId]'); location.href='/index.php?page=index.html.twig'</script>";
+        echo "<script>alert('$_SESSION[nickname]'); location.href='/index.php?page=index.html.twig'</script>";
     }
     else{
         echo "<script>alert('로그인에 실패했습니다!'); location.href='/index.php?page=login.html.twig'</script>";

@@ -7,31 +7,9 @@
         <title>비밀번호 찾기</title>
     </head>
     <body>
-        <header id="header-top">
-            <div class="header-top">
-                <a href="/index.php?page=login.html.twig">로그인</a>
-                <a href="/index.php?page=register.html.twig">회원가입</a>
-            </div>
-            <div class="header-main">
-                <h1 class="header-title"><a href="/index.php?page=index.html.twig">CodeSnack</a></h1>
-            </div>
-        </header>
+        {% include 'header.html' %}
 
-        <nav>
-            <div class="nav-left">
-                <a href="/index.php?page=index.html.twig">홈</a> | <a href="/index.php?page=notice-board.html.twig">공지사항</a> |
-                <a href="/index.php?page=free-board.html.twig">자유 게시판</a> |
-                <a href="/index.php?page=market-board.html.twig">장터 게시판</a> |
-                <a href="/index.php?page=suggestions-board.html.twig">건의 게시판</a> |
-                <a href="/index.php?page=qna-board.html.twig">QnA 게시판</a> |
-                <a href="/index.php?page=pointshop.html.twig">포인트샵</a>
-            </div>
-            <div class="search-box">
-                <input type="text" placeholder="검색어를 입력하세요">
-                <button type="button">검색</button>
-            </div>
-    
-        </nav>
+        {% include 'nav.html' %}
 
     <section id="login-section">
         <h2>비밀번호 변경</h2>
