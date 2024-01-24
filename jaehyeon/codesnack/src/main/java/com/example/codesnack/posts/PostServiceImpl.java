@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -40,10 +41,9 @@ public class PostServiceImpl implements PostService {
         User user = getCurrentUserFromSession();
         post.setUser(user);
 
-        post.setPosttype(post.getPosttype());
+        post.setPosttype(postDTO.getPosttype());
         post.setTitle(postDTO.getTitle());
         post.setContent(postDTO.getContent());
-        post.setImage(postDTO.getImage());
 
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         post.setTimestamp(timestamp);
@@ -63,15 +63,12 @@ public class PostServiceImpl implements PostService {
         return null;
     }
 
+
     @Override
-    public Optional<List<Post>> getLatestPosts(long postId, int count, int page) {
-        Sort sort = Sort.by(Sort.Direction.DESC, "timestamp");
-        Pageable pageable = PageRequest.of(page, count, sort);
-        Page<Post> postPage = postRepository.findByPostIdOrderByTimestampDesc(postId, pageable);
-
-        List<Post> latestPosts = postPage.getContent();
-
-        return Optional.ofNullable(latestPosts.isEmpty() ? null : latestPosts);
+    public Page<Post> getPostsByUserId(int posttype, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by("timestamp").descending());
+        return postRepository.findAllByPosttypeOrderByTimestampDesc(posttype, pageable);
     }
+
 
 }

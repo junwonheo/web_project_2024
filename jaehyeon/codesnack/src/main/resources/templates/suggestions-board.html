@@ -9,8 +9,16 @@
   <body>
     <header>
       <div class="header-top">
-          <a th:href="@{/login}">로그인</a>
-          <a th:href="@{/register}">회원가입</a>
+        <!-- 로그인 성공 시에만 유저의 닉네임과 로그아웃 버튼을 표시 -->
+        <span th:if="${session.user}">
+                    <span th:text="${session.user}">User</span>
+                    <a th:href="@{/logout}">로그아웃</a>
+                </span>
+        <!-- 로그인하지 않은 경우에 로그인과 회원가입 버튼을 표시 -->
+        <span th:unless="${session.user}">
+                    <a th:href="@{/login}">로그인</a>
+                    <a th:href="@{/register}">회원가입</a>
+                </span>
       </div>
       <div class="header-main">
           <h1 class="header-title"><a th:href="@{/}">CodeSnack</a></h1>
@@ -31,61 +39,17 @@
         <a th:href="@{/qnaBoard}">QnA 게시판</a> |
         <a th:href="@{/pointShop}">포인트샵</a>
       </div>
-      <button
-        class="write-post-btn"
-        onclick="location.href='write-post-page.html'"
-      >
-        글 쓰기
-      </button>
+      <button class="write-post-btn" th:onclick="|javascript:window.location='@{/writePostPage}'|">글 쓰기</button>
     </nav>
 
     <section>
-      <!-- 자유 게시물만 표시 -->
-      <a href="suggestions-text.html"
-        ><article class="free-post">
-          <h2>자유 게시물 1</h2>
-          <p>게시물 내용이 여기에 들어갑니다.</p>
-        </article></a
-      >
-
-      <a href="suggestions-text.html"
-        ><article class="free-post">
-          <h2>자유 게시물 2</h2>
-          <p>게시물 내용이 여기에 들어갑니다.</p>
-        </article></a
-      >
-      <a href="suggestions-text.html"
-        ><article class="free-post">
-          <h2>자유 게시물 2</h2>
-          <p>게시물 내용이 여기에 들어갑니다.</p>
-        </article></a
-      >
-      <a href="suggestions-text.html"
-        ><article class="free-post">
-          <h2>자유 게시물 2</h2>
-          <p>게시물 내용이 여기에 들어갑니다.</p>
-        </article></a
-      >
-      <a href="suggestions-text.html"
-        ><article class="free-post">
-          <h2>자유 게시물 2</h2>
-          <p>게시물 내용이 여기에 들어갑니다.</p>
-        </article></a
-      >
-      <a href="suggestions-text.html"
-        ><article class="free-post">
-          <h2>자유 게시물 2</h2>
-          <p>게시물 내용이 여기에 들어갑니다.</p>
-        </article></a
-      >
-      <a href="suggestions-text.html"
-        ><article class="free-post">
-          <h2>자유 게시물 2</h2>
-          <p>게시물 내용이 여기에 들어갑니다.</p>
-        </article></a
-      >
-
-      <!-- 추가적인 자유 게시물들을 동적으로 표시하거나, 페이지를 넘기는 등의 기능을 구현할 수 있습니다. -->
+      <div th:each="post : ${latestSuggestionsBoardPosts}">
+        <article class="free-post">
+          <h2 th:text="${post.title}"></h2>
+          <p th:text="${post.user.nickname + ' | ' + post.timestamp}"></p><br><br>
+          <p th:text="${post.content}"></p>
+        </article>
+      </div>
     </section>
 
     <footer>© 2024 CodeSnack. All rights reserved.</footer>

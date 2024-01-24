@@ -46,35 +46,24 @@
 <section id="upload_content">
     <form id="postForm" method="post">
         <div id="write-post-top">
-            <select id="board-select" name="board">
-                <option value=1>자유 게시판</option>
-                <option value=2>장터 게시판</option>
-                <option value=3>건의 게시판</option>
-                <option value=4>QnA 게시판</option>
-            </select>
             <input type="text" id="title" name="title" placeholder="제목을 입력하세요" required>
         </div>
         <label for="content_area">내용:</label>
         <textarea id="content_area" name="content" rows="8" required></textarea>
         <div id="upload_container">
-<!--            <div>-->
-<!--                <label for="image">이미지 첨부:</label>-->
-<!--                <input type="file" id="image" name="image" accept="image/*">-->
-<!--            </div>-->
+            <!--            <div>-->
+            <!--                <label for="image">이미지 첨부:</label>-->
+            <!--                <input type="file" id="image" name="image" accept="image/*">-->
+            <!--            </div>-->
             <button id="upload_content_button" type="button" onclick="submitForm()">글 올리기</button>
         </div>
     </form>
     <script th:inline="javascript">
         function submitForm() {
             var form = document.getElementById('postForm');
-            var actionUrl = '/api/board/post';
-
-            var posttypeSelect = document.getElementById('board-select');
-            var posttype = posttypeSelect.options[posttypeSelect.selectedIndex].value;
+            var actionUrl = '/api/board/notice';
 
             var formData = new FormData(form);
-
-            formData.append('posttype', posttype);
 
             fetch(actionUrl, {
                 method: 'POST',

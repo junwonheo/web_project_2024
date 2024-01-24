@@ -1,5 +1,6 @@
 package com.example.codesnack;
 
+import com.example.codesnack.notices.NoticeService;
 import com.example.codesnack.posts.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,10 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController {
     private final PostService postService;
+    private final NoticeService noticeService;
 
     @Autowired
-    public HomeController(PostService postService) {
+    public HomeController(PostService postService, NoticeService noticeService) {
         this.postService = postService;
+        this.noticeService = noticeService;
     }
 
     @GetMapping("/")
@@ -27,31 +30,31 @@ public class HomeController {
 
     @GetMapping("/noticeBoard")
     public String showNoticeBoard(Model model) {
-        model.addAttribute("latestNoticePosts", postService.getLatestPosts(1, 30, 1).orElse(null));
+        model.addAttribute("latestNoticeBoardPosts", noticeService.getLatestNoticeBoardPosts(0, 10));
         return "notice-board";
     }
 
     @GetMapping("/freeBoard")
     public String showFreeBoard(Model model) {
-        model.addAttribute("latestFreeBoardPosts", postService.getLatestPosts(2, 30, 2).orElse(null));
+        model.addAttribute("latestFreeBoardPosts", postService.getPostsByUserId(1, 0, 10));
         return "free-board";
     }
 
     @GetMapping("/marketBoard")
     public String showMarketBoard(Model model) {
-        model.addAttribute("latestMarketBoardPosts", postService.getLatestPosts(3, 30, 3).orElse(null));
+        model.addAttribute("latestMarketBoardPosts", postService.getPostsByUserId(2, 0, 10));
         return "market-board";
     }
 
     @GetMapping("/suggestionsBoard")
     public String showSuggestionsBoard(Model model) {
-        model.addAttribute("latestSuggestionsBoardPosts", postService.getLatestPosts(4, 30, 4).orElse(null));
+        model.addAttribute("latestSuggestionsBoardPosts", postService.getPostsByUserId(3, 0, 10));
         return "suggestions-board";
     }
 
     @GetMapping("/qnaBoard")
     public String showQnaBoard(Model model) {
-        model.addAttribute("latestQnaBoardsPosts", postService.getLatestPosts(5, 30, 5).orElse(null));
+        model.addAttribute("latestQnaBoardPosts", postService.getPostsByUserId(4, 0, 10));
         return "qna-board";
     }
 
@@ -63,5 +66,10 @@ public class HomeController {
     @GetMapping("/writePostPage")
     public String showWritePostPage() {
         return "write-post-page";
+    }
+
+    @GetMapping("/writeNoticePage")
+    public String showWriteNoticePage() {
+        return "write-notice-page";
     }
 }

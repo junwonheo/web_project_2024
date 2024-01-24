@@ -16,6 +16,5 @@ public class PostDTO {
     private int posttype;
     private String title;
     private String content;
-    private String image;
     private Timestamp timestamp;
 }

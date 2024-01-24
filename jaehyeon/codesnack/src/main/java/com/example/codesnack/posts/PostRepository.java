@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
-    Page<Post> findByPostIdOrderByTimestampDesc(long postId, Pageable pageable);
+    Page<Post> findAllByPosttypeOrderByTimestampDesc(int posttype, Pageable pageable);
 }
