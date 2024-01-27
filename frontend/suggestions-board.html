@@ -7,58 +7,11 @@
     <title>건의 게시판</title>
   </head>
   <body>
-    {% include 'header.html' %}
+    {% include 'templates/header.html' %}
 
-    {% include 'nav.html' %}
+    {% include 'templates/nav.html' %}
 
-    <section>
-      <!-- 자유 게시물만 표시 -->
-      <a href="/index.php?page=suggestions-text.html.twig"
-        ><article class="free-post">
-          <h2>자유 게시물 1</h2>
-          <p>게시물 내용이 여기에 들어갑니다.</p>
-        </article></a
-      >
-
-      <a href="/index.php?page=suggestions-text.html.twig"
-        ><article class="free-post">
-          <h2>자유 게시물 2</h2>
-          <p>게시물 내용이 여기에 들어갑니다.</p>
-        </article></a
-      >
-      <a href="/index.php?page=suggestions-text.html.twig"
-        ><article class="free-post">
-          <h2>자유 게시물 2</h2>
-          <p>게시물 내용이 여기에 들어갑니다.</p>
-        </article></a
-      >
-      <a href="/index.php?page=suggestions-text.html.twig"
-        ><article class="free-post">
-          <h2>자유 게시물 2</h2>
-          <p>게시물 내용이 여기에 들어갑니다.</p>
-        </article></a
-      >
-      <a href="/index.php?page=suggestions-text.html.twig"
-        ><article class="free-post">
-          <h2>자유 게시물 2</h2>
-          <p>게시물 내용이 여기에 들어갑니다.</p>
-        </article></a
-      >
-      <a href="/index.php?page=suggestions-text.html.twig"
-        ><article class="free-post">
-          <h2>자유 게시물 2</h2>
-          <p>게시물 내용이 여기에 들어갑니다.</p>
-        </article></a
-      >
-      <a href="/index.php?page=suggestions-text.html.twig"
-        ><article class="free-post">
-          <h2>자유 게시물 2</h2>
-          <p>게시물 내용이 여기에 들어갑니다.</p>
-        </article></a
-      >
-
-      <!-- 추가적인 자유 게시물들을 동적으로 표시하거나, 페이지를 넘기는 등의 기능을 구현할 수 있습니다. -->
-    </section>
+    {% include 'templates/section.html' %}
 
     <footer>© 2024 CodeSnack. All rights reserved.</footer>
   </body>

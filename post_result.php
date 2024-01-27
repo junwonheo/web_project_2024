@@ -22,9 +22,9 @@ else{
 }
 $result=mysqli_query($conn,"insert into post (userId, postType, title, content, image) values ('$userId', '$board',$title ,'$content', '$image')");
 if($result){
-    echo "<script>alert('게시글 업로드에 성공했습니다!'); location.href='/index.php?page=index.html.twig'</script>";
+    echo "<script>alert('게시글 업로드에 성공했습니다!'); location.href='/index.php?board=index'</script>";
 }
 else {
-    echo "<script>alert('게시글 업로드에 실패했습니다!'); location.href='/index.php?page=index.html.twig'</script>";
+    echo "<script>alert('게시글 업로드에 실패했습니다!'); location.href='/index.php?board=index'</script>";
 }
 ?>

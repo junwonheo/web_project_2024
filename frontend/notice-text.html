@@ -9,18 +9,11 @@
     <title>공지사항</title>
   </head>
   <body>
-    {% include 'header.html' %}
+    {% include 'templates/header.html' %}
 
-    {% include 'nav.html' %}
+    {% include 'templates/nav.html' %}
 
-    <section>
-      <form>
-        <div class="text">
-          <div class="title">제목</div>
-          <div class="content">내용</div>
-        </div>
-      </form>
-    </section>
+    {% include 'templates/section-text.html' %}
 
     <footer>© 2024 CodeSnack. All rights reserved.</footer>
   </body>

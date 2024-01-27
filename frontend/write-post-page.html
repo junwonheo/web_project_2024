@@ -10,18 +10,19 @@
 
 <body>
 
-    {% include 'header.html' %}
+    {% include 'templates/header.html' %}
 
-    {% include 'nav.html' %}
+    {% include 'templates/nav.html' %}
 
     <section id="upload_content">
         <form enctype="multipart/form-data" action="/post_result.php" method="post">
             <div id="write-post-top">
                 <select id="board-select" name="board">
-                    <option value="0">자유 게시판</option>
-                    <option value="1">장터 게시판</option>
-                    <option value="2">건의 게시판</option>
-                    <option value="3">QnA 게시판</option>
+                    <option value="0">공지사항</option>
+                    <option value="1">자유 게시판</option>
+                    <option value="2">장터 게시판</option>
+                    <option value="3">건의 게시판</option>
+                    <option value="4">QnA 게시판</option>
                 </select>
                 <input type="text" id="title" name="title" placeholder="제목을 입력하세요" required>
             </div>

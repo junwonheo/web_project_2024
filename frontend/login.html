@@ -7,9 +7,9 @@
         <title>로그인</title>
     </head>
     <body>
-        {% include 'header.html' %}
+        {% include 'templates/header.html' %}
 
-        {% include 'nav.html' %}
+        {% include 'templates/nav.html' %}
 
     <section id="login-section">
         <h2>로그인</h2>
@@ -24,8 +24,8 @@
             <button type="submit">로그인</button>
         </form>
 
-        <p>아직 계정이 없으신가요? <a href="/index.php?page=register.html">회원가입</a></p>
-        <p>아이디 혹은 비밀번호를 잊어버리셨나요? <br> <a href="/index.php?page=find-id.html">아이디 찾기</a> <a href="/index.php?page=find-pw.html">비밀번호 찾기</a></p>
+        <p>아직 계정이 없으신가요? <a href="/index.php?board=register">회원가입</a></p>
+        <p>아이디 혹은 비밀번호를 잊어버리셨나요? <br> <a href="/index.php?board=find-id">아이디 찾기</a> <a href="/index.php?board=find-pw">비밀번호 찾기</a></p>
     </section>
 
     <footer>

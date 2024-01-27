@@ -11,32 +11,23 @@ $dbname="codesnack";
 $conn=mysqli_connect($host,$user,$pw,$dbname) or die("can't access DB");
 session_start();
 
-if (isset($_GET['board'])) {           // 현재 보고 있는 게시판
-    $board = "{$_GET['board']}";
-} else {
-    $board = "index";
-}
-
-if (isset($_SESSION['nickname'])){      //로그인 확인
-    $user = $_SESSION['nickname'];
-}else {
-    $user = '';
-}
-
-$boardType = array(
-    "index" => 'index',
-    "notice-board" => 0,
-    "free-board" => 1,
-    "market-board" => 2,
-    "suggestions-board" => 3,
-    "qna-board" => 4
+$board = isset($_GET['board']) ? $_GET['board'] : 'index'; // 현재 보고있는 게시판
+$explodeBoard=explode('-',$board)[0];
+$nickname = isset($_SESSION['nickname']) ? $_SESSION['nickname']:''; // 로그인 확인
+$boardType = array(                 // post 타입별 array
+    "notice" => 0,
+    "free" => 1,
+    "market" => 2,
+    "suggestions" => 3,
+    "qna" => 4
 );
 
+if(isset($boardType[$explodeBoard])){
 $currentPage = isset($_GET['currentPage']) ? (int)$_GET['currentPage']: 1;       //page 검색
 $perPage = 5;
 $startPage = ($currentPage > 1) ? ($currentPage * $perPage) - $perPage : 0;
 $sql = "SELECT p.postId, p.userId, p.postType, p.title, p.content, p.image, p.timeStamp, u.nickname From post as p
-INNER JOIN user AS u ON p.userId = u.userId LIMIT {$startPage}, {$perPage}";
+INNER JOIN user AS u ON p.userId = u.userId where p.postType = $boardType[$explodeBoard] LIMIT {$startPage}, {$perPage}";
 $sqlResult = $conn->query($sql);
 $posts = array();
 if($sqlResult->num_rows > 0){
@@ -47,6 +38,30 @@ if($sqlResult->num_rows > 0){
 $total = $conn->query("SELECT COUNT(*) as total FROM post")->fetch_assoc()['total'];
 $totalPage = ceil($total/$perPage);
 $conn->close();
+}
 
-echo $twig->render($board . '.html',['user' => $user, 'posts' => $posts, 'currentPage' => $currentPage, 'totalPage' => $totalPage, 'boardType' => isset($boardType[$board])?$boardType[$board]:'' ]);
+if(substr($board,-4,4) == 'text'){   // 게시물 상세 페이지 렌더링
+echo $twig->render($board . '.html',
+    ['nickname' => $nickname,
+     'posts' => $posts,
+     'currentPage' => $currentPage,
+     'perPage' => $perPage,
+     'postId' => isset($_GET['postId'])?$_GET['postId']:'', ]);
+}
+elseif( substr($board,-5,5) == 'board'){                                   // 게시판 페이지 렌더링
+echo $twig->render($board . '.html',
+    ['nickname' => $nickname,
+     'posts' => $posts,
+     'currentPage' => $currentPage,
+     'perPage' => $perPage,
+     'totalPage' => $totalPage,
+     'boardType' => isset($boardType[$explodeBoard])?$boardType[$explodeBoard]:'',
+     'board' => $explodeBoard
+]);
+}
+else {            // 그 외 페이지 렌더링
+echo $twig->render($board . '.html',
+    ['nickname' => $nickname
+]);
+}
 ?>
