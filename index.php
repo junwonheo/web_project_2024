@@ -27,7 +27,7 @@ $currentPage = isset($_GET['currentPage']) ? (int)$_GET['currentPage']: 1;      
 $perPage = 5;
 $startPage = ($currentPage > 1) ? ($currentPage * $perPage) - $perPage : 0;
 $sql = "SELECT p.postId, p.userId, p.postType, p.title, p.content, p.image, p.timeStamp, u.nickname From post as p
-INNER JOIN user AS u ON p.userId = u.userId where p.postType = $boardType[$explodeBoard] LIMIT {$startPage}, {$perPage}";
+INNER JOIN user AS u ON p.userId = u.userId where p.postType = $boardType[$explodeBoard] order by p.timeStamp desc LIMIT {$startPage}, {$perPage}";
 $sqlResult = $conn->query($sql);
 $posts = array();
 if($sqlResult->num_rows > 0){

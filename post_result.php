@@ -14,13 +14,21 @@ $userId=$_SESSION['userId'];
 $board=$_POST['board'];
 $title=$_POST['title'];
 $content=$_POST['content'];
-if(isset($_POST['image'])){
-    $image=$_POST['image'];
+if (isset($_FILES['image'])) {
+    $defaultPath = 'uploads/';
+    $tempPath = $_FILES['image']['tmp_name'];
+    $extension = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+    $filename = 'image_' . date('Y-m-d_H-i-s') . '_' . uniqid() . '.' . $extension;
+    $filePath = $defaultPath . $filename;
+
+    if (move_uploaded_file($tempPath, $filePath)) {
+        $image = $filePath;
+    }
 }
 else{
     $image='';
 }
-$result=mysqli_query($conn,"insert into post (userId, postType, title, content, image) values ('$userId', '$board',$title ,'$content', '$image')");
+$result=mysqli_query($conn,"insert into post (userId, postType, title, content, image) values ('$userId', '$board','$title' ,'$content', '$image')");
 if($result){
     echo "<script>alert('게시글 업로드에 성공했습니다!'); location.href='/index.php?board=index'</script>";
 }

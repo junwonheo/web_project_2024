@@ -4,20 +4,23 @@
         <div class="text">
           <div class="title">{{post.title}}</div>
           <div class="content">{{post.content}}</div>
-          <div class="image">{{post.image}}</div>
+          <div class="image"><img src={{post.image}}></div>
         </div>
         {% endif %}
         {% endfor %}
         <div class="comment_form">
           <!--댓글 작성 폼-->
           <h2>댓글 작성</h2>
-          <form method="post">
+          <form action="comment-process.php" method="post">
             <label for="comment">댓글 내용</label>
             <textarea id="comment" name="comment" rows="4"></textarea>
+            <input type="hidden" name="postType" value="">
             <button type="submit">등록</button>
           </form>
         </div>
-
+        <script>
+          
+        </script>
         <div class="comment_list">
           <!-- 댓글 리스트  -->
           <h2>댓글 목록</h2>
