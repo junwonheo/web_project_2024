@@ -29,6 +29,7 @@
     <section id="upload_content">
         <form enctype="multipart/form-data" action="your-upload-handler.php" method="post">
             <div id="write-post-top">
+            <input type="hidden" name="id" value="<?php echo $_SESSION['id']; ?>">
                 <select id="board-select" name="board">
                     <option value="free-board">자유게시판</option>
                     <option value="information_board">정보게시판</option>

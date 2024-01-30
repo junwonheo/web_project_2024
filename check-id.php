@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $db_password = "";
     $db_name = "codesnack";
 
-    $id = $_POST['id'];
+    $content = $_POST['id'];
 
     $db_host = "localhost";
     $db_user = "codesnack";
@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $mysqli = new mysqli($db_host, $db_user, $db_password, $db_name);
 
-    $query = "SELECT * FROM user WHERE id='$id'";
+    $query = "SELECT * FROM user WHERE id='$content'";
     $result = $mysqli->query($query);
 
     if ($result->num_rows > 0) {

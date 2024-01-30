@@ -7,7 +7,7 @@ session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
-    $id = $_POST['id'];
+    $content = $_POST['id'];
     $pw = $_POST['password'];
     $confirm_pw = $_POST['confirm-password'];
     $nickname = $_POST['nickname'];
@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<script>window.history.go(-1);</script>";
     } else {
         if ($_SESSION['idCheck'] && $_SESSION['nickname']) {
-            $query = "INSERT INTO user (userName, id, passwd, nickname, question, answer) VALUES('$username', '$id', '$pw', '$nickname', '$question', '$answer')";
+            $query = "INSERT INTO user (userName, id, passwd, nickname, question, answer) VALUES('$username', '$content', '$pw', '$nickname', '$question', '$answer')";
             $mysqli->query($query);
             if ($mysqli->affected_rows > 0) {
                 unset($_SESSION['id_duplicate']);
