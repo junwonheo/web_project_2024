@@ -9,36 +9,25 @@
 </head>
 
 <body>
-
-    <header>
-        <div class="header-top">
-            <a href="login.html">로그인</a>
-            <a href="register.html">회원가입</a>
-        </div>
-        <div class="header-main">
-            <h1 class="header-title"><a href="index.html">CodeSnack</a></h1>
-        </div>
-    </header>
+    <?php include '../header.php'; ?>
 
     <nav>
-        <!-- 풀 리퀘스트 테스트 -->
-        <!-- 검색 창 추가 -->
         <div class="search-box">
             <input type="text" placeholder="검색어를 입력하세요">
             <button type="button">검색</button>
         </div>
         <div class="nav-left">
-            <a href="index.html">홈</a> | <a href="notice-board.html">공지사항</a> |
-            <a href="free-board.html">자유 게시판</a> |
-            <a href="market-board.html">장터 게시판</a> |
-            <a href="suggestions-board.html">건의 게시판</a> |
-            <a href="qna-board.html">QnA 게시판</a> |
-            <a href="pointshop.html">포인트샵</a>
+            <a href="index.php">홈</a> | <a href="notice-board.php">공지사항</a> |
+            <a href="free-board.php">자유 게시판</a> |
+            <a href="market-board.php">장터 게시판</a> |
+            <a href="suggestions-board.php">건의 게시판</a> |
+            <a href="qna-board.php">QnA 게시판</a> |
+            <a href="pointshop.php">포인트샵</a>
         </div>
     </nav>
 
     <section>
-        <a href="notice-board.html">
+        <a href="notice-board.php">
             <article>
                 <h2>
                     공지 사항
@@ -46,7 +35,7 @@
                 <p>게시물 내용 1</p>
             </article>
         </a>
-        <a href="free-board.html">
+        <a href="free-board.php">
             <article>
                 <h2>
                     자유 게시판
@@ -54,7 +43,7 @@
                 <p>게시물 내용 2</p>
             </article>
         </a>
-        <a href="market-board.html">
+        <a href="market-board.php">
             <article>
                 <h2>
                     장터 게시판
@@ -63,7 +52,7 @@
             </article>
 
         </a>
-        <a href="suggestions-board.html">
+        <a href="suggestions-board.php">
             <article>
                 <h2>
                     건의 게시판
@@ -72,7 +61,7 @@
             </article>
 
         </a>
-        <a href="qna-board.html">
+        <a href="qna-board.php">
             <article>
                 <h2>
                     QnA 게시판

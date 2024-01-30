@@ -5,79 +5,70 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="../static/css/styles.css">
-  <title>QnA 게시판</title>
+  <title>자유 게시판</title>
 </head>
 
 <body>
-  <header>
-    <div class="header-top">
-      <a href="login.html">로그인</a>
-      <a href="register.html">회원가입</a>
-    </div>
-    <div class="header-main">
-      <h1 class="header-title"><a href="index.html">CodeSnack</a></h1>
-    </div>
-  </header>
-
+  <?php include '../header.php' ?>
+  
   <nav>
-    <!-- 검색 창 추가 -->
-    <div class="search-box">
-      <input type="text" placeholder="검색어를 입력하세요" />
-      <button type="button">검색</button>
-    </div>
-    <div class="nav-left">
-      <a href="index.html">홈</a> | <a href="notice-board.html">공지사항</a> |
-      <a href="free-board.html">자유 게시판</a> |
-      <a href="market-board.html">장터 게시판</a> |
-      <a href="suggestions-board.html">건의 게시판</a> |
-      <a href="qna-board.html">QnA 게시판</a> |
-      <a href="pointshop.html">포인트샵</a>
-    </div>
-    <button class="write-post-btn" onclick="location.href='write-post-page.html'">
+      <div class="search-box">
+          <input type="text" placeholder="검색어를 입력하세요">
+          <button type="button">검색</button>
+      </div>
+      <div class="nav-left">
+          <a href="index.php">홈</a> | <a href="notice-board.php">공지사항</a> |
+          <a href="free-board.php">자유 게시판</a> |
+          <a href="market-board.php">장터 게시판</a> |
+          <a href="suggestions-board.php">건의 게시판</a> |
+          <a href="qna-board.php">QnA 게시판</a> |
+          <a href="pointshop.php">포인트샵</a>
+      </div>
+    <button class="write-post-btn" onclick="location.href='../session.php'">
       글 쓰기
     </button>
   </nav>
 
   <section>
-    <!-- 자유 게시물만 표시 -->
-    <a href="qna-text.html">
+    <!-- 자유 게시물만 표시  -->
+    <a href="free-text.php">
       <article class="free-post">
         <h2>자유 게시물 1</h2>
         <p>게시물 내용이 여기에 들어갑니다.</p>
       </article>
     </a>
 
-    <a href="qna-text.html">
+    <a href="free-text.php">
       <article class="free-post">
         <h2>자유 게시물 2</h2>
         <p>게시물 내용이 여기에 들어갑니다.</p>
       </article>
     </a>
-    <a href="qna-text.html">
+    <a href="free-text.php">
       <article class="free-post">
         <h2>자유 게시물 2</h2>
         <p>게시물 내용이 여기에 들어갑니다.</p>
       </article>
     </a>
-    <a href="qna-text.html">
+    <a href="free-text.php">
       <article class="free-post">
         <h2>자유 게시물 2</h2>
         <p>게시물 내용이 여기에 들어갑니다.</p>
       </article>
     </a>
-    <a href="qna-text.html">
+    <a href="free-text.php">
       <article class="free-post">
         <h2>자유 게시물 2</h2>
         <p>게시물 내용이 여기에 들어갑니다.</p>
       </article>
     </a>
-    <a href="qna-text.html">
+    <a href="free-text.php">
       <article class="free-post">
         <h2>자유 게시물 2</h2>
         <p>게시물 내용이 여기에 들어갑니다.</p>
       </article>
     </a>
-    <a href="qna-text.html">
+    <a href="free-text.php">
       <article class="free-post">
         <h2>자유 게시물 2</h2>
         <p>게시물 내용이 여기에 들어갑니다.</p>
