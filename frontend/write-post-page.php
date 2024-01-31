@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/styles.css">
+    <link rel="stylesheet" href="styles.css">
     <title>글쓰기</title>
 </head>
 
@@ -27,7 +27,7 @@
     </nav>
 
     <section id="upload_content">
-        <form enctype="multipart/form-data" action="your-upload-handler.php" method="post">
+        <form enctype="multipart/form-data" action="../your-upload-handler.php" method="post">
             <div id="write-post-top">
             <input type="hidden" name="id" value="<?php echo $_SESSION['id']; ?>">
                 <select id="board-select" name="board">

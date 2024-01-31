@@ -1,10 +1,5 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $db_host = "localhost";
-    $db_user = "codesnack";
-    $db_password = "";
-    $db_name = "codesnack";
-
     $nickname = $_POST['nickname'];
 
     $db_host = "localhost";

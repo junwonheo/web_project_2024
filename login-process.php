@@ -5,8 +5,10 @@ ini_set("display_errors", 1);
 
 session_start();
 
-function searchUser($id, $pw)
-{
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $id = $_POST['username'];
+    $pw = $_POST['password'];
+
     $db_host = "localhost";
     $db_user = "codesnack";
     $db_password = "";
@@ -17,17 +19,9 @@ function searchUser($id, $pw)
     $query = "SELECT * FROM user WHERE id = '$id' AND passwd = '$pw'";
     $result = $mysqli->query($query);
 
-    return $result;
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $id = $_POST['username'];
-    $pw = $_POST['password'];
-
-    $searchResult = searchUser($id, $pw);
-
-    if ($searchResult->num_rows > 0) {
+    if ($result->num_rows > 0) {
         $_SESSION['id'] = $id;
+        $_SESSION['userId'] = $mysqli->query("SELECT userId FROM user WHERE id = '$id'")->fetch_assoc()['userId'];
         echo "<script>location.href = 'frontend/index.php';</script>";
     } else {
         echo "<script>alert('아이디 또는 비밀번호가 존재하지 않습니다.');</script>";
