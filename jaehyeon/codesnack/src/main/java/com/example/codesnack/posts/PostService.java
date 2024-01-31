@@ -9,4 +9,6 @@ public interface PostService {
     Optional<Post> savePost(PostDTO postDTO);
 
     public Page<Post> getPostsByUserId(int posttype, int page, int size);
+
+    public Post getPost(Long postId);
 }

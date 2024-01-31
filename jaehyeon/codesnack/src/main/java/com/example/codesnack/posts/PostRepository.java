@@ -6,8 +6,10 @@ import org.springframework.stereotype.Repository;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
     Page<Post> findAllByPosttypeOrderByTimestampDesc(int posttype, Pageable pageable);
+    Optional<Post> findByPostId(long postId);
 }

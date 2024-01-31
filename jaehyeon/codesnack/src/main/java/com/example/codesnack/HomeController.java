@@ -1,11 +1,13 @@
 package com.example.codesnack;
 
 import com.example.codesnack.notices.NoticeService;
+import com.example.codesnack.posts.Post;
 import com.example.codesnack.posts.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class HomeController {
@@ -56,6 +58,13 @@ public class HomeController {
     public String showQnaBoard(Model model) {
         model.addAttribute("latestQnaBoardPosts", postService.getPostsByUserId(4, 0, 10));
         return "qna-board";
+    }
+
+    @GetMapping(value = "/post/detail/{postId}")
+    public String detail(Model model, @PathVariable("postId") Long postId) {
+        Post post = this.postService.getPost(postId);
+        model.addAttribute("post", post);
+        return "post-detail";
     }
 
     @GetMapping("/pointShop")

@@ -11,14 +11,14 @@
       <div class="header-top">
         <!-- 로그인 성공 시에만 유저의 닉네임과 로그아웃 버튼을 표시 -->
         <span th:if="${session.user}">
-                    <span th:text="${session.user}">User</span>
-                    <a th:href="@{/logout}">로그아웃</a>
-                </span>
+            <span th:text="${session.user}">User</span>
+            <a th:href="@{/logout}">로그아웃</a>
+        </span>
         <!-- 로그인하지 않은 경우에 로그인과 회원가입 버튼을 표시 -->
         <span th:unless="${session.user}">
-                    <a th:href="@{/login}">로그인</a>
-                    <a th:href="@{/register}">회원가입</a>
-                </span>
+            <a th:href="@{/login}">로그인</a>
+            <a th:href="@{/register}">회원가입</a>
+        </span>
       </div>
       <div class="header-main">
           <h1 class="header-title"><a th:href="@{/}">CodeSnack</a></h1>
@@ -44,11 +44,13 @@
 
     <section>
       <div th:each="post : ${latestSuggestionsBoardPosts}">
-        <article class="free-post">
-          <h2 th:text="${post.title}"></h2>
-          <p th:text="${post.user.nickname + ' | ' + post.timestamp}"></p><br><br>
-          <p th:text="${post.content}"></p>
-        </article>
+        <a th:href="@{|/post/detail/${post.postId}|}">
+          <article class="suggestions-post">
+            <h2 th:text="${post.title}"></h2>
+            <p th:text="${post.user.nickname + ' | ' + post.timestamp}"></p><br><br>
+            <p th:text="${post.content}"></p>
+          </article>
+        </a>
       </div>
     </section>
 

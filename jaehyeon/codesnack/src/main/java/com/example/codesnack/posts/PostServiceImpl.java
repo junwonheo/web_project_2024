@@ -1,5 +1,6 @@
 package com.example.codesnack.posts;
 
+import com.example.codesnack.DataNotFoundException;
 import com.example.codesnack.users.User;
 import com.example.codesnack.users.UserService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -10,10 +11,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -71,4 +70,15 @@ public class PostServiceImpl implements PostService {
     }
 
 
+    @Override
+    public Post getPost(Long postId) {
+        Optional<Post> post = this.postRepository.findByPostId(postId);
+
+        if(post.isPresent()) {
+            return post.get();
+        }
+        else {
+            throw new DataNotFoundException("question not found");
+        }
+    }
 }

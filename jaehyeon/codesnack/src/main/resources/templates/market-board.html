@@ -44,11 +44,13 @@
 
     <section>
         <div th:each="post : ${latestMarketBoardPosts}">
-            <article class="free-post">
-                <h2 th:text="${post.title}"></h2>
-                <p th:text="${post.user.nickname + ' | ' + post.timestamp}"></p><br><br>
-                <p th:text="${post.content}"></p>
-            </article>
+            <a th:href="@{|/post/detail/${post.postId}|}">
+                <article class="market-post">
+                    <h2 th:text="${post.title}"></h2>
+                    <p th:text="${post.user.nickname + ' | ' + post.timestamp}"></p><br><br>
+                    <p th:text="${post.content}"></p>
+                </article>
+            </a>
         </div>
     </section>
 
