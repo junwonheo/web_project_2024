@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         } else {
             echo "<script>alert('중복 확인이 완료되지 않았습니다.');</script>";
-//            echo "<script>window.history.go(-1);</script>";
+            echo "<script>window.history.go(-1);</script>";
         }
     }
 }

@@ -38,4 +38,3 @@ if ($mysqli->affected_rows > 0) {
 } else {
     echo "<script>alert('글을 등록하는 중에 문제가 발생했습니다. 다시 시도해주세요.');</script>";
 }
-?>
