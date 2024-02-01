@@ -7,7 +7,7 @@ session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
-    $content = $_POST['id'];
+    $id = $_POST['id'];
     $pw = $_POST['password'];
     $confirm_pw = $_POST['confirm-password'];
     $nickname = $_POST['nickname'];
@@ -21,19 +21,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $mysqli = new mysqli($db_host, $db_user, $db_password, $db_name);
 
-    $_SESSION['idCheck'] = true;
-    $_SESSION['nicknameCheck'] = true;
-
     if ($pw != $confirm_pw) {
         echo "<script>alert('비밀번호가 일치하지 않습니다.');</script>";
         echo "<script>window.history.go(-1);</script>";
     } else {
-        if ($_SESSION['idCheck'] && $_SESSION['nickname']) {
-            $query = "INSERT INTO user (userName, id, passwd, nickname, question, answer) VALUES('$username', '$content', '$pw', '$nickname', '$question', '$answer')";
+        if (isset($_SESSION['idCheck']) && isset($_SESSION['nicknameCheck'])) {
+            $query = "INSERT INTO user (userName, id, passwd, nickname, question, answer) VALUES('$username', '$id', '$pw', '$nickname', '$question', '$answer')";
             $mysqli->query($query);
             if ($mysqli->affected_rows > 0) {
-                unset($_SESSION['id_duplicate']);
-                unset($_SESSION['nickname_duplicate']);
+                unset($_SESSION['idCheck']);
+                unset($_SESSION['nicknameCheck']);
                 echo "<script>alert('회원가입에 성공하였습니다.');</script>";
                 echo "<script>location.href = 'frontend/login.php';</script>";
             } else {
@@ -42,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         } else {
             echo "<script>alert('중복 확인이 완료되지 않았습니다.');</script>";
-            echo "<script>window.history.go(-1);</script>";
+//            echo "<script>window.history.go(-1);</script>";
         }
     }
 }

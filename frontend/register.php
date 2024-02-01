@@ -43,7 +43,7 @@
 
             <label for="id">아이디:</label>
             <input type="text" id="id" name="id" required>
-            <button type="button" id="id_check_button"
+            <button type="button" id="id_check_button" 
                 style="padding: 10px; color: #333; border: none; border-radius: 5px; cursor: pointer;">중복확인</button>
             <div id="id_check_result"></div><br>
 
@@ -55,7 +55,7 @@
 
             <label for="nickname">닉네임:</label>
             <input type="text" id="nickname" name="nickname" required>
-            <button type="button" id="nickname_check_button"
+            <button type="button" id="nickname_check_button" 
                 style="padding: 10px; color: #333; border: none; border-radius: 5px; cursor: pointer;">중복확인</button>
             <div id="nickname_check_result"></div><br>
 
@@ -77,10 +77,13 @@
         © 2024 CodeSnack. All rights reserved.
     </footer>
     <script>
-        var idCheck = false;
-        var nicknameCheck = false;
         document.getElementById("id_check_button").addEventListener("click", function () {
             var id = document.getElementById("id").value;
+
+            if (id.trim() === "") {
+                alert("아이디를 입력하세요.");
+                return;
+            }
 
             fetch("../check-id.php", {
                 method: "POST",
@@ -94,15 +97,19 @@
                     document.getElementById('id_check_result').innerHTML = message;
 
                     if (message.includes('사용 가능')) {
-                        idCheck = true;
                         document.getElementById('id_check_button').remove();
-                        document.getElementById('id').disabled = true;
+                        document.getElementById("id").readOnly = true;
                     }
                 });
         });
         document.getElementById("nickname_check_button").addEventListener("click", function () {
             var nickname = document.getElementById("nickname").value;
 
+            if (nickname.trim() === "") {
+                alert("닉네임을 입력하세요.");
+                return;
+            }
+            
             fetch("../check-nickname.php", {
                 method: "POST",
                 headers: {
@@ -115,16 +122,10 @@
                     document.getElementById('nickname_check_result').innerHTML = message;
 
                     if (message.includes('사용 가능')) {
-                        nicknameCheck = true;
                         document.getElementById('nickname_check_button').remove();
-                        document.getElementById('nickname').disabled = true;
+                        document.getElementById("nickname").readOnly = true;
                     }
                 });
-        });
-        document.getElementById("submit_button").addEventListener("click", function () {
-            if (idCheck && nicknameCheck) {
-                document.getElementById("register-form").submit();
-            }
         });
     </script>
 
