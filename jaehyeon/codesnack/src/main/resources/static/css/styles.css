@@ -275,12 +275,9 @@ article:hover {
 .post_detail{
     padding: 15px;
 }
-.post_text{
-    margin: 10px 0px 0px 10px;
-}
 /*댓글*/
 .comment_form {
-    margin-top: 20px;
+    margin-top: 30px;
 }
 .comment_form h2 {
     font-size: 20px;

@@ -72,7 +72,7 @@
             <label for="answer"></label>
             <input type="text" id="answer" name="answer" required><br>
 
-            <button type="submit" id="submit_button">회원가입</button>
+            <button type="submit" id="submit_button" disabled>회원가입</button>
         </form>
 
         <p>이미 계정이 있으신가요? <a th:href="@{/login}">로그인</a></p>
@@ -87,63 +87,34 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <script>
+    var isIdChecked = false;
+    var isNicknameChecked = false;
+
     function checkIdDuplicate() {
-    let id = document.getElementById("id").value;
+        let id = document.getElementById("id").value;
 
-    // Check if the id is not empty
-    if (id.trim() === "") {
-        alert("아이디를 입력하세요.");
-        return;
-    }
-
-    // Send AJAX request to check id duplicate
-    $.ajax({
-        type: "GET",
-        url: "/api/users/checkIdDuplicate?id=" + id,
-        contentType: "application/x-www-form-urlencoded",  // 수정
-        success: function (response) {
-            // Update the message element
-            var messageElement = document.getElementById("idDuplicateMessage");
-            if (response === true) {
-                messageElement.innerHTML = "사용 가능한 아이디입니다.";
-                messageElement.style.color = "blue";
-            } else {
-                messageElement.innerHTML = "이미 사용 중인 아이디입니다.";
-                messageElement.style.color = "red";
-            }
-            messageElement.style.marginBottom = "1em";
-            },
-        error: function () {
-            console.error("서버 오류");
-        }
-        });
-    }
-
-    function checkNicknameDuplicate() {
-        let nickname = document.getElementById("nickname").value;
-
-        // Check if the nickname is not empty
-        if (nickname.trim() === "") {
-            alert("닉네임을 입력하세요.");
+        if (id.trim() === "") {
+            alert("아이디를 입력하세요.");
             return;
         }
 
-        // Send AJAX request to check nickname duplicate
         $.ajax({
             type: "GET",
-            url: "/api/users/checkNicknameDuplicate?nickname=" + nickname,
-            contentType: "application/x-www-form-urlencoded",  // 수정
+            url: "/api/users/checkIdDuplicate?id=" + id,
+            contentType: "application/x-www-form-urlencoded",
             success: function (response) {
-                // Update the message element
-                var messageElement = document.getElementById("nicknameDuplicateMessage");
+                var messageElement = document.getElementById("idDuplicateMessage");
                 if (response === true) {
-                    messageElement.innerHTML = "사용 가능한 닉네임입니다.";
+                    messageElement.innerHTML = "사용 가능한 아이디입니다.";
                     messageElement.style.color = "blue";
+                    isIdChecked = true;
                 } else {
-                    messageElement.innerHTML = "이미 사용 중인 닉네임입니다.";
+                    messageElement.innerHTML = "이미 사용 중인 아이디입니다.";
                     messageElement.style.color = "red";
+                    isIdChecked = false;
                 }
                 messageElement.style.marginBottom = "1em";
+                checkSignUpButton();
             },
             error: function () {
                 console.error("서버 오류");
@@ -151,6 +122,51 @@
         });
     }
 
+    function checkNicknameDuplicate() {
+        let nickname = document.getElementById("nickname").value;
+
+        if (nickname.trim() === "") {
+            alert("닉네임을 입력하세요.");
+            return;
+        }
+
+        $.ajax({
+            type: "GET",
+            url: "/api/users/checkNicknameDuplicate?nickname=" + nickname,
+            contentType: "application/x-www-form-urlencoded",
+            success: function (response) {
+                // Update the message element
+                var messageElement = document.getElementById("nicknameDuplicateMessage");
+                if (response === true) {
+                    messageElement.innerHTML = "사용 가능한 닉네임입니다.";
+                    messageElement.style.color = "blue";
+                    isNicknameChecked = true;
+                } else {
+                    messageElement.innerHTML = "이미 사용 중인 닉네임입니다.";
+                    messageElement.style.color = "red";
+                    isNicknameChecked = false;
+                }
+                messageElement.style.marginBottom = "1em";
+                checkSignUpButton();
+            },
+            error: function () {
+                console.error("서버 오류");
+            }
+        });
+
+        isNicknameChecked = response === true;
+        checkSignUpButton();
+    }
+
+    function checkSignUpButton() {
+        var signUpButton = document.getElementById("submit_button");
+
+        if (isIdChecked && isNicknameChecked) {
+            signUpButton.disabled = false;
+        } else {
+            signUpButton.disabled = true;
+        }
+    }
 </script>
 
 </html>

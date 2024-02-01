@@ -8,6 +8,7 @@ import java.util.Optional;
 @Service
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
+    private final int DEFAULT_POINT = 500;
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository) {
@@ -25,6 +26,7 @@ public class UserServiceImpl implements UserService {
         user.setNickname(userDTO.getNickname());
         user.setQuestion(userDTO.getQuestion());
         user.setAnswer(userDTO.getAnswer());
+        user.setPoint(DEFAULT_POINT);
 
         // User 엔티티 저장
         return Optional.ofNullable(userRepository.save(user));
