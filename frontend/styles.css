@@ -21,14 +21,20 @@ header {
     justify-content: flex-end;
 }
 
-.header-top a {
+.header-top a, 
+.header-top p {
     color: #fff;
     text-decoration: none;
     font-size: 14px;
     margin-left: 10px;  
 }
 
-.header-top a:hover {
+.header-top p {
+    margin-top: 2px;
+}
+
+.header-top a:hover, 
+.header-top p:hover {
     text-decoration: underline;
 }
 

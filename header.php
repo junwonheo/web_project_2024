@@ -8,7 +8,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="frontend/styles.css">
     <title>CodeSnack</title>
 </head>
 
@@ -17,6 +17,7 @@ session_start();
     <header>
         <?php if (isset($_SESSION['id'])) { ?>
             <div class="header-top">
+                <?php echo "<p>" . $_SESSION['id']  . "</p>"; ?>
                 <a href="../logout.php">로그아웃</a>
             </div>
         <?php } else { ?>
@@ -30,4 +31,5 @@ session_start();
         </div>
     </header>
 </body>
+
 </html>
