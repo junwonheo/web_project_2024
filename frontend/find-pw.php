@@ -9,15 +9,7 @@
 </head>
 
 <body>
-    <header id="header-top">
-        <div class="header-top">
-            <a href="login.php">로그인</a>
-            <a href="register.php">회원가입</a>
-        </div>
-        <div class="header-main">
-            <h1 class="header-title"><a href="index.php">CodeSnack</a></h1>
-        </div>
-    </header>
+  <?php include '../header.php' ?>
 
     <nav>
         <div class="nav-left">

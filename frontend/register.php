@@ -9,17 +9,13 @@
 </head>
 
 <body>
-    <header>
-        <div class="header-top">
-            <a href="login.php">로그인</a>
-            <a href="register.php">회원가입</a>
-        </div>
-        <div class="header-main">
-            <h1 class="header-title"><a href="index.php">CodeSnack</a></h1>
-        </div>
-    </header>
+    <?php include '../header.php' ?>
 
     <nav>
+        <div class="search-box">
+            <input type="text" placeholder="검색어를 입력하세요">
+            <button type="button">검색</button>
+        </div>
         <div class="nav-left">
             <a href="index.php">홈</a> |
             <a href="notice-board.php">공지사항</a> |
@@ -29,11 +25,6 @@
             <a href="qna-board.php">QnA 게시판</a> |
             <a href="pointshop.php">포인트샵</a>
         </div>
-        <div class="search-box">
-            <input type="text" placeholder="검색어를 입력하세요">
-            <button type="button">검색</button>
-        </div>
-
     </nav>
     <section id="register-section">
         <h3>회원가입</h3>
@@ -44,7 +35,7 @@
 
             <label for="id">아이디:</label>
             <input type="text" id="id" name="id" required>
-            <button type="button" id="id_check_button" 
+            <button type="button" id="id_check_button"
                 style="padding: 10px; color: #333; border: none; border-radius: 5px; cursor: pointer;">중복확인</button>
             <div id="id_check_result"></div><br>
 
@@ -56,7 +47,7 @@
 
             <label for="nickname">닉네임:</label>
             <input type="text" id="nickname" name="nickname" required>
-            <button type="button" id="nickname_check_button" 
+            <button type="button" id="nickname_check_button"
                 style="padding: 10px; color: #333; border: none; border-radius: 5px; cursor: pointer;">중복확인</button>
             <div id="nickname_check_result"></div><br>
 
@@ -110,7 +101,7 @@
                 alert("닉네임을 입력하세요.");
                 return;
             }
-            
+
             fetch("../check-nickname.php", {
                 method: "POST",
                 headers: {
