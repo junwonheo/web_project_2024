@@ -29,15 +29,8 @@
   </nav>
 
   <section>
-    <form>
-      <div class="text">
-        <div class="title">제목</div>
-        <div class="content">내용</div>
-        <div class="image">이미지</div>
-      </div>
-    </form>
+    <?php include '../board-text.php' ?>
     <div class="comment_form">
-      <!--댓글 작성 폼-->
       <h2>댓글 작성</h2>
       <form method="post">
         <label for="comment">댓글 내용</label>
@@ -47,14 +40,13 @@
     </div>
 
     <div class="comment_list">
-      <!-- 댓글 리스트  -->
       <h2>댓글 목록</h2>
       <ul>
         <li>
           <div class="comment_info">
-            <span class="comment_author">닉네임</span>
+            <span class="comment_author">//닉네임</span>
           </div>
-          <div class="comment_text">댓글 내용</div>
+          <div class="comment_text">//댓글 내용</div>
         </li>
         <li>
           <div class="comment_info">
@@ -68,6 +60,24 @@
   </section>
 
   <footer>© 2024 CodeSnack. All rights reserved.</footer>
+  <script>
+    fetch("board-text.php")
+      .then(response => response.json())
+      .then(data => {
+        data.forEach(post => {
+          var postElement = document.createElement('div');
+          postElement.innerHTML = `
+          <div class="post">
+            <h2>${post.title}</h2>
+            <p>${post.content}</p>
+            <img src="${post.image}" alt="Post Image">
+          </div>
+        `;
+          document.querySelector('section').appendChild(postElement);
+        });
+      })
+  </script>
+
 </body>
 
 </html>

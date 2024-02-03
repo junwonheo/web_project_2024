@@ -13,7 +13,6 @@ session_start();
 </head>
 
 <body>
-
     <header>
         <?php if (isset($_SESSION['id'])) { ?>
             <div class="header-top">
