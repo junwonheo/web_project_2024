@@ -6,12 +6,16 @@ ini_set("display_errors", 1);
 session_start();
 
 $user_id = $_SESSION['userId'];
-$post_type = $_POST['board'];
+$board = $_POST['board'];
 $title = $_POST['title'];
 $content = $_POST['content'];
 $image = $_FILES['image']['name'];
+
+// current_time
+date_default_timezone_set('Asia/Seoul');
 $current_time = date('Y-m-d H:i:s');
 
+// image
 if ($_FILES['image']['error'] == UPLOAD_ERR_OK) {
     $target_dir = "images/";
     $target_file = $target_dir . basename($_FILES["image"]["name"]);
@@ -21,7 +25,23 @@ if ($_FILES['image']['error'] == UPLOAD_ERR_OK) {
     $image = '';
 }
 
-echo "<script>alert('$id', '$post_type', '$title' '$content', '$image', '$current_time');</script>";
+// post_type
+switch ($board) {
+    case 'free-board':
+        $post_type = 1;
+        break;
+    case 'information_board':
+        $post_type = 2;
+        break;
+    case 'suggestions-board':
+        $post_type = 3;
+        break;
+    case 'qna_board':
+        $post_type = 4;
+        break;
+    default:
+        break;
+}
 
 $db_host = "localhost";
 $db_user = "codesnack";
@@ -29,7 +49,6 @@ $db_password = "";
 $db_name = "codesnack";
 
 $mysqli = new mysqli($db_host, $db_user, $db_password, $db_name);
-///// post_type 확인 필요
 $query = "INSERT INTO post (userId, postType, title, content, image, timeStamp) VALUES('$user_id', '$post_type', '$title', '$content', '$image', '$current_time')";
 $mysqli->query($query);
 if ($mysqli->affected_rows > 0) {
