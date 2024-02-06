@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -58,7 +59,13 @@ public class CommentServiceImpl implements CommentService {
         return null;
     }
 
-    private Post getCurrentPostFromPostId(Long postId) {
+    @Override
+    public Post getCurrentPostFromPostId(Long postId) {
         return postRepository.findByPostId(postId).orElse(null);
+    }
+
+    @Override
+    public Optional<List<Comment>> getCommentByPostId(Long postId) {
+        return commentRepository.findAllByPostId(postId);
     }
 }

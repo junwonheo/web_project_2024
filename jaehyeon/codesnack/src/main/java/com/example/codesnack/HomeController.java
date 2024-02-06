@@ -1,5 +1,7 @@
 package com.example.codesnack;
 
+import com.example.codesnack.comments.Comment;
+import com.example.codesnack.comments.CommentService;
 import com.example.codesnack.notices.NoticeService;
 import com.example.codesnack.posts.Post;
 import com.example.codesnack.posts.PostService;
@@ -9,15 +11,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+
 @Controller
 public class HomeController {
     private final PostService postService;
     private final NoticeService noticeService;
+    private final CommentService commentService;
 
     @Autowired
-    public HomeController(PostService postService, NoticeService noticeService) {
+    public HomeController(PostService postService, NoticeService noticeService, CommentService commentService) {
         this.postService = postService;
         this.noticeService = noticeService;
+        this.commentService = commentService;
     }
 
     @GetMapping("/")
@@ -64,6 +72,17 @@ public class HomeController {
     public String detail(Model model, @PathVariable("postId") Long postId) {
         Post post = this.postService.getPost(postId);
         model.addAttribute("post", post);
+
+        Optional<List<Comment>> commentsOptional = commentService.getCommentByPostId(postId);
+
+        if (commentsOptional.isPresent()) {
+            List<Comment> comments = commentsOptional.get();
+            model.addAttribute("Comments", comments);
+        } else {
+
+            model.addAttribute("Comments", Collections.emptyList());
+        }
+
         return "post-detail";
     }
 
