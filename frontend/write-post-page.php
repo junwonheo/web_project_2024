@@ -33,7 +33,7 @@
             <input type="hidden" name="id" value="<?php echo $_SESSION['id']; ?>">
                 <select id="board-select" name="board">
                     <option value="free-board">자유 게시판</option>
-                    <option value="information_board">정보 게시판</option>
+                    <option value="market_board">장터 게시판</option>
                     <option value="suggestions-board">건의 게시판</option>
                     <option value="qna_board">QnA 게시판</option>
                 </select>

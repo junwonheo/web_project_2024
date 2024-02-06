@@ -29,7 +29,12 @@
   </nav>
 
   <section>
-    <?php include '../board-text.php' ?>
+    <form>
+      <div class="text">
+        <?php include '../board-text.php' ?>
+      </div>
+    </form>
+
     <div class="comment_form">
       <h2>댓글 작성</h2>
       <form method="post">
@@ -56,27 +61,9 @@
         </li>
       </ul>
     </div>
-    </div>
   </section>
 
   <footer>© 2024 CodeSnack. All rights reserved.</footer>
-  <script>
-    fetch("board-text.php")
-      .then(response => response.json())
-      .then(data => {
-        data.forEach(post => {
-          var postElement = document.createElement('div');
-          postElement.innerHTML = `
-          <div class="post">
-            <h2>${post.title}</h2>
-            <p>${post.content}</p>
-            <img src="${post.image}" alt="Post Image">
-          </div>
-        `;
-          document.querySelector('section').appendChild(postElement);
-        });
-      })
-  </script>
 
 </body>
 

@@ -29,52 +29,37 @@
   </nav>
 
   <section>
-    <!-- 자유 게시물만 표시 -->
-    <a href="qna-text.php">
-      <article class="free-post">
-        <h2>자유 게시물 1</h2>
-        <p>게시물 내용이 여기에 들어갑니다.</p>
-      </article>
-    </a>
+    <?php include '../connect-data.php' ?>
+    <?php
+    $query1 = "SELECT postType FROM post";
+    $result1 = $mysqli->query($query1);
 
-    <a href="qna-text.php">
-      <article class="free-post">
-        <h2>자유 게시물 2</h2>
-        <p>게시물 내용이 여기에 들어갑니다.</p>
-      </article>
-    </a>
-    <a href="qna-text.php">
-      <article class="free-post">
-        <h2>자유 게시물 2</h2>
-        <p>게시물 내용이 여기에 들어갑니다.</p>
-      </article>
-    </a>
-    <a href="qna-text.php">
-      <article class="free-post">
-        <h2>자유 게시물 2</h2>
-        <p>게시물 내용이 여기에 들어갑니다.</p>
-      </article>
-    </a>
-    <a href="qna-text.php">
-      <article class="free-post">
-        <h2>자유 게시물 2</h2>
-        <p>게시물 내용이 여기에 들어갑니다.</p>
-      </article>
-    </a>
-    <a href="qna-text.php">
-      <article class="free-post">
-        <h2>자유 게시물 2</h2>
-        <p>게시물 내용이 여기에 들어갑니다.</p>
-      </article>
-    </a>
-    <a href="qna-text.php">
-      <article class="free-post">
-        <h2>자유 게시물 2</h2>
-        <p>게시물 내용이 여기에 들어갑니다.</p>
-      </article>
-    </a>
+    if ($result1 && $result1->num_rows > 0) {
+      while ($row = $result1->fetch_assoc()) {
+        $postType = $row['postType'];
 
-    <!-- 추가적인 자유 게시물들을 동적으로 표시하거나, 페이지를 넘기는 등의 기능을 구현할 수 있습니다. -->
+        if ($postType === "4") {
+          $query2 = "SELECT * FROM post WHERE postType = 4";
+          $result2 = $mysqli->query($query2);
+
+          if ($result2 && $result2->num_rows > 0) {
+            while ($row2 = $result2->fetch_assoc()) {
+              $postid = $row2['postId'];
+              $title = $row2['title'];
+              $content = $row2['content'];
+              echo '<a href="qna-text.php?postid=' . $postid . '" class="qna-post-link">';
+              echo '<article class="qna-post">';
+              echo '<h2>' . $title . '</h2>';
+              echo '<p>' . $content . '</p>';
+              echo '</article>';
+              echo '</a>';
+            }
+          }
+          break;
+        }
+      }
+    }
+    ?>
   </section>
 
   <footer>© 2024 CodeSnack. All rights reserved.</footer>

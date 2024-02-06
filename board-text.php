@@ -1,34 +1,33 @@
+<!-- XXX-text -->
 <?php
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 
-$db_host = "localhost";
-$db_user = "codesnack";
-$db_password = "";
-$db_name = "codesnack";
+if (isset($_GET['postid'])) {
+    $postid = $_GET['postid'];
 
-$mysqli = new mysqli($db_host, $db_user, $db_password, $db_name);
-$query = "SELECT * FROM post";
-$result = $mysqli->query($query);
-$rows = array();
+    $db_host = "localhost";
+    $db_user = "codesnack";
+    $db_password = "";
+    $db_name = "codesnack";
 
-if ($result) {
-    while ($row = $result->fetch_assoc()) {
-        $rows[] = $row;
+    $mysqli = new mysqli($db_host, $db_user, $db_password, $db_name);
+    $query = "SELECT * FROM post WHERE postId=$postid";
+    $result = $mysqli->query($query);
+    $rows = array();
+
+    $route = "../images/";
+
+    if ($result && $result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $title = $row['title'];
+            $content = $row['content'];
+            $image = $row['image'];
+            echo '<div class="title">' . $title . '</div>';
+            echo '<div class="content">' . $content . '</div>';
+            if (!empty($image) && file_exists($route . $image)) {
+                echo '<div class="image"><img src="' . $route . $image . '"></div>';
+            }
+        }
     }
 }
-?>
-
-<form>
-    <div class="text">
-        <div class="title"> <!-- 차례대로 -->
-            <?php echo $rows[5]['title']; ?>
-        </div>
-        <div class="content">
-            <?php echo $rows[5]['content']; ?>
-        </div>
-        <div class="image"> <!-- 이미지 가져오기 수정 -->
-            <?php echo $rows[5]['image']; ?>
-        </div>
-    </div>
-</form>

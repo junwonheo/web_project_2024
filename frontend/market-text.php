@@ -27,16 +27,15 @@
     </div>
     <button class="write-post-btn" onclick="location.href='../session.php'">글 쓰기</button>
   </nav>
+
   <section>
     <form>
       <div class="text">
-        <div class="title">제목</div>
-        <div class="content">내용</div>
-        <div class="image">이미지</div>
+        <?php include '../board-text.php' ?>
       </div>
     </form>
+
     <div class="comment_form">
-      <!--댓글 작성 폼 -->
       <h2>댓글 작성</h2>
       <form method="post">
         <label for="comment">댓글 내용</label>
@@ -46,7 +45,6 @@
     </div>
 
     <div class="comment_list">
-      <!-- 댓글 리스트 -->
       <h2>댓글 목록</h2>
       <ul>
         <li>
