@@ -29,16 +29,23 @@
   </nav>
 
   <section>
-    <?php include '../connect-data.php' ?>
     <?php
-    $query1 = "SELECT postType FROM post";
-    $result1 = $mysqli->query($query1);
+    include '../connect-data.php';
+
+    if (isset($_GET['page'])) {
+      $page = $_GET['page'];
+    } else {
+      $page = 1;
+    }
+    $list_num = 9;
+    $start = ($page - 1) * $list_num;
 
     $query = "SELECT post.postId, post.title, post.timeStamp, user.nickname
           FROM post
           INNER JOIN user ON post.userId = user.userId
           WHERE post.postType = 1
-          ORDER BY post.timeStamp DESC";
+          ORDER BY post.timeStamp DESC
+          LIMIT $start, $list_num";
 
     $result = $mysqli->query($query);
 
@@ -58,6 +65,24 @@
         echo '</a>';
       }
     }
+    
+    $total_query = "SELECT COUNT(*) AS total_count FROM post WHERE postType = 1";
+    $total_result = $mysqli->query($total_query);
+    $total_row = $total_result->fetch_assoc();
+    $total_posts = $total_row['total_count'];
+    $total_page = ceil($total_posts / $list_num);
+
+    echo '<div class="pagination">';
+    if ($page > 1) {
+      echo '<a class="pre" href="free-board.php?page=' . ($page - 1) . '">이전</a>';
+    }
+    for ($i = 1; $i <= $total_page; $i++) {
+      echo '<a class="num" href="free-board.php?page=' . $i . '">' . $i . '</a>';
+    }
+    if ($page < $total_page) {
+      echo '<a class="next" href="free-board.php?page=' . ($page + 1) . '">다음</a>';
+    }
+    echo '</div>';
     ?>
   </section>
 

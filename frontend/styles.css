@@ -248,6 +248,14 @@ article p {
     margin-left: 25px;
 }
 
+/*페이징*/
+.pagination {
+    text-align: center;
+}
+.pagination a {
+    margin: 5px;
+}
+
 /*상세정보*/
 .info1 {
     float: left;
