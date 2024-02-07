@@ -1,8 +1,9 @@
 <?php
+// 오류 출력 (삭제)
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
-commentId, userId, postId, comment, Timestamp
-$comment = $_POST['comment']
+//commentId, userId, postId, comment, Timestamp
+$comment = $_POST['comment'];
 
 // current_time
 date_default_timezone_set('Asia/Seoul');
