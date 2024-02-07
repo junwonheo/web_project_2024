@@ -29,11 +29,7 @@
   </nav>
 
   <section>
-    <form>
-      <div class="text">
-        <?php include '../board-text.php' ?>
-      </div>
-    </form>
+    <?php include '../board-text.php' ?>
 
     <div class="comment_form">
       <h2>댓글 작성</h2>

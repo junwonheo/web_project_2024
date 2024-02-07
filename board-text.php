@@ -12,7 +12,11 @@ if (isset($_GET['postid'])) {
     $db_name = "codesnack";
 
     $mysqli = new mysqli($db_host, $db_user, $db_password, $db_name);
-    $query = "SELECT * FROM post WHERE postId=$postid";
+    $query = "SELECT post.title, post.content, post.image, post.timeStamp, user.nickname
+            FROM post
+            INNER JOIN user ON post.userId = user.userId
+            WHERE post.postId = $postid";
+
     $result = $mysqli->query($query);
     $rows = array();
 
@@ -23,11 +27,17 @@ if (isset($_GET['postid'])) {
             $title = $row['title'];
             $content = $row['content'];
             $image = $row['image'];
+            $timestamp = $row['timeStamp'];
+            $nickname = $row['nickname'];
+            echo '<p class="info1">' . $nickname . '</p>';
+            echo '<p class="info2">' . $timestamp . '</p>';
+            echo '<div class="text">';
             echo '<div class="title">' . $title . '</div>';
             echo '<div class="content">' . $content . '</div>';
             if (!empty($image) && file_exists($route . $image)) {
                 echo '<div class="image"><img src="' . $route . $image . '"></div>';
             }
+            echo '</div>';
         }
     }
 }

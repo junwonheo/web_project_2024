@@ -34,29 +34,28 @@
     $query1 = "SELECT postType FROM post";
     $result1 = $mysqli->query($query1);
 
-    if ($result1 && $result1->num_rows > 0) {
-      while ($row = $result1->fetch_assoc()) {
-        $postType = $row['postType'];
+    $query = "SELECT post.postId, post.title, post.timeStamp, user.nickname
+          FROM post
+          INNER JOIN user ON post.userId = user.userId
+          WHERE post.postType = 3
+          ORDER BY post.timeStamp DESC";
 
-        if ($postType === "3") {
-          $query2 = "SELECT * FROM post WHERE postType = 3";
-          $result2 = $mysqli->query($query2);
+    $result = $mysqli->query($query);
 
-          if ($result2 && $result2->num_rows > 0) {
-            while ($row2 = $result2->fetch_assoc()) {
-              $postid = $row2['postId'];
-              $title = $row2['title'];
-              $content = $row2['content'];
-              echo '<a href="suggestions-text.php?postid=' . $postid . '" class="suggestions-post-link">';
-              echo '<article class="suggestions-post">';
-              echo '<h2>' . $title . '</h2>';
-              echo '<p>' . $content . '</p>';
-              echo '</article>';
-              echo '</a>';
-            }
-          }
-          break;
-        }
+    if ($result && $result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
+        $postid = $row['postId'];
+        $title = $row['title'];
+        $timestamp = $row['timeStamp'];
+        $nickname = $row['nickname'];
+
+        echo '<a href="suggestions-text.php?postid=' . $postid . '" class="suggestions-post-link">';
+        echo '<article class="suggestions-post">';
+        echo '<h3>' . $title . '</h3>';
+        echo '<p>' . $timestamp . '</p>';
+        echo '<p>' . $nickname . '</p>';
+        echo '</article>';
+        echo '</a>';
       }
     }
     ?>

@@ -225,7 +225,7 @@ article {
     background-color: #fff;
     border: 1px solid #ddd;
     margin: 20px;
-    padding-left: 15px;
+    padding: 0px 15px;
     border-radius: 8px;
     transition: transform 0.3s ease, background-color 0.3s ease; /* 트랜지션 효과 추가 */
     cursor: pointer;
@@ -236,9 +236,31 @@ article:hover {
     transform: scale(1.02);
     background-color: #f0f0f0; /* 마우스 호버 시 색상 변경 */
 }
+
+article h3 {
+    display: inline-block;
+    margin: 13px 5px;
+    width: 380px;
+}
+
+article p {
+    float: right;
+    margin-left: 25px;
+}
+
 /*상세정보*/
+.info1 {
+    float: left;
+    display: inline;
+    margin: 20px 30px 0px;
+}
+.info2 {
+    float: right;
+    display: inline;
+    margin: 20px 30px 0px 80px;
+}
 .text {
-    margin: 20px 20px 60px;
+    margin: 50px 20px 60px;
     color: #333;
     padding: 8px 16px;
     background-color: #fff;

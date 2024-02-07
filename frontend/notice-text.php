@@ -28,12 +28,7 @@
   </nav>
 
   <section>
-    <form>
-      <div class="text">
-        <div class="title">제목</div>
-        <div class="content">내용</div>
-      </div>
-    </form>
+    <?php include '../board-text.php' ?>
   </section>
 
   <footer>© 2024 CodeSnack. All rights reserved.</footer>

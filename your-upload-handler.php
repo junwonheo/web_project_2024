@@ -27,6 +27,9 @@ if ($_FILES['image']['error'] == UPLOAD_ERR_OK) {
 
 // post_type
 switch ($board) {
+    case 'notice-board':
+        $post_type = 0;
+        break;
     case 'free-board':
         $post_type = 1;
         break;
@@ -53,6 +56,9 @@ $query = "INSERT INTO post (userId, postType, title, content, image, timeStamp) 
 $mysqli->query($query);
 if ($mysqli->affected_rows > 0) {
     switch ($post_type) {
+        case 0:
+            $post_type = "notice-board.php";
+            break;
         case 1:
             $post_type = "free-board.php";
             break;
