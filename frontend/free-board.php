@@ -29,61 +29,7 @@
   </nav>
 
   <section>
-    <?php
-    include '../connect-data.php';
-
-    if (isset($_GET['page'])) {
-      $page = $_GET['page'];
-    } else {
-      $page = 1;
-    }
-    $list_num = 9;
-    $start = ($page - 1) * $list_num;
-
-    $query = "SELECT post.postId, post.title, post.timeStamp, user.nickname
-          FROM post
-          INNER JOIN user ON post.userId = user.userId
-          WHERE post.postType = 1
-          ORDER BY post.timeStamp DESC
-          LIMIT $start, $list_num";
-
-    $result = $mysqli->query($query);
-
-    if ($result && $result->num_rows > 0) {
-      while ($row = $result->fetch_assoc()) {
-        $postid = $row['postId'];
-        $title = $row['title'];
-        $timestamp = $row['timeStamp'];
-        $nickname = $row['nickname'];
-
-        echo '<a href="free-text.php?postid=' . $postid . '" class="free-post-link">';
-        echo '<article class="free-post">';
-        echo '<h3>' . $title . '</h3>';
-        echo '<p>' . $timestamp . '</p>';
-        echo '<p>' . $nickname . '</p>';
-        echo '</article>';
-        echo '</a>';
-      }
-    }
-    
-    $total_query = "SELECT COUNT(*) AS total_count FROM post WHERE postType = 1";
-    $total_result = $mysqli->query($total_query);
-    $total_row = $total_result->fetch_assoc();
-    $total_posts = $total_row['total_count'];
-    $total_page = ceil($total_posts / $list_num);
-
-    echo '<div class="pagination">';
-    if ($page > 1) {
-      echo '<a class="pre" href="free-board.php?page=' . ($page - 1) . '">이전</a>';
-    }
-    for ($i = 1; $i <= $total_page; $i++) {
-      echo '<a class="num" href="free-board.php?page=' . $i . '">' . $i . '</a>';
-    }
-    if ($page < $total_page) {
-      echo '<a class="next" href="free-board.php?page=' . ($page + 1) . '">다음</a>';
-    }
-    echo '</div>';
-    ?>
+    <?php include "../board-process.php"; ?>
   </section>
 
   <footer>© 2024 CodeSnack. All rights reserved.</footer>
