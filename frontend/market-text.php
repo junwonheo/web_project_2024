@@ -43,20 +43,8 @@
     <div class="comment_list">
       <h2>댓글 목록</h2>
       <ul>
-        <li>
-          <div class="comment_info">
-            <span class="comment_author">닉네임</span>
-          </div>
-          <div class="comment_text">댓글 내용</div>
-        </li>
-        <li>
-          <div class="comment_info">
-            <span class="comment_author">닉네임</span>
-          </div>
-          <div class="comment_text">댓글 내용2</div>
-        </li>
+          <?php include '../comment-list.php' ?>
       </ul>
-    </div>
     </div>
   </section>
 

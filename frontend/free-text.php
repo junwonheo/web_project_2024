@@ -30,10 +30,9 @@
 
   <section>
     <?php include '../board-text.php' ?>
-
     <div class="comment_form">
       <h2>댓글 작성</h2>
-      <form enctype="multipart/form-data" action="../write-comment.php" method="post">
+      <form enctype="multipart/form-data" action="../write-comment.php?postid=<?php echo $post_id ?>" method="post">
         <label for="comment">댓글 내용</label>
         <textarea id="comment" name="comment" rows="4"></textarea>
         <button type="submit">등록</button>
@@ -43,18 +42,7 @@
     <div class="comment_list">
       <h2>댓글 목록</h2>
       <ul>
-        <li>
-          <div class="comment_info">
-            <span class="comment_author">//닉네임</span>
-          </div>
-          <div class="comment_text">//댓글 내용</div>
-        </li>
-        <li>
-          <div class="comment_info">
-            <span class="comment_author">닉네임</span>
-          </div>
-          <div class="comment_text">댓글 내용2</div>
-        </li>
+          <?php include '../comment-list.php' ?>
       </ul>
     </div>
   </section>

@@ -1,8 +1,4 @@
 <?php
-// 오류 출력 (삭제)
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
-
 session_start();
 
 $user_id = $_SESSION['userId'];
