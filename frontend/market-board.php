@@ -29,7 +29,7 @@
   </nav>
 
   <section>
-    <?php include "../board-process.php"; ?>
+    <?php include "../board-list.php"; ?>
   </section>
 
   <footer>

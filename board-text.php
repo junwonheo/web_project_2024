@@ -4,7 +4,7 @@ error_reporting(E_ALL);
 ini_set("display_errors", 1);
 
 if (isset($_GET['postid'])) {
-    $postid = $_GET['postid'];
+    $post_id = $_GET['postid'];
 
     $db_host = "localhost";
     $db_user = "codesnack";
@@ -15,7 +15,7 @@ if (isset($_GET['postid'])) {
     $query = "SELECT post.title, post.content, post.image, post.timeStamp, user.nickname
             FROM post
             INNER JOIN user ON post.userId = user.userId
-            WHERE post.postId = $postid";
+            WHERE post.postId = $post_id";
 
     $result = $mysqli->query($query);
     $rows = array();
