@@ -2,12 +2,7 @@
 if (isset($_GET['postid'])) {
     $post_id = $_GET['postid'];
 
-    $db_host = "localhost";
-    $db_user = "codesnack";
-    $db_password = "";
-    $db_name = "codesnack";
-
-    $mysqli = new mysqli($db_host, $db_user, $db_password, $db_name);
+    include "connect-db.php";
     $query = "SELECT post.title, post.content, post.image, post.timeStamp, user.nickname
             FROM post
             INNER JOIN user ON post.userId = user.userId

@@ -5,13 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = $_POST['username'];
     $pw = $_POST['password'];
 
-    $db_host = "localhost";
-    $db_user = "codesnack";
-    $db_password = "";
-    $db_name = "codesnack";
-
-    $mysqli = new mysqli($db_host, $db_user, $db_password, $db_name);
-
+    include "connect-db.php";
     $query = "SELECT * FROM user WHERE id = '$id' AND passwd = '$pw'";
     $result = $mysqli->query($query);
 

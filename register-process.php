@@ -10,12 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $question = $_POST['question'];
     $answer = $_POST['answer'];
 
-    $db_host = "localhost";
-    $db_user = "codesnack";
-    $db_password = "";
-    $db_name = "codesnack";
-
-    $mysqli = new mysqli($db_host, $db_user, $db_password, $db_name);
+    include "connect-db.php";
 
     if ($pw != $confirm_pw) {
         echo "<script>alert('비밀번호가 일치하지 않습니다.');</script>";

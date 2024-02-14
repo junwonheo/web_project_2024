@@ -42,12 +42,7 @@ switch ($board) {
         break;
 }
 
-$db_host = "localhost";
-$db_user = "codesnack";
-$db_password = "";
-$db_name = "codesnack";
-
-$mysqli = new mysqli($db_host, $db_user, $db_password, $db_name);
+include "connect-db.php";
 $query = "INSERT INTO post (userId, postType, title, content, image, timeStamp) VALUES('$user_id', '$post_type', '$title', '$content', '$image', '$current_time')";
 $mysqli->query($query);
 if ($mysqli->affected_rows > 0) {

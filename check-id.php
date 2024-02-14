@@ -4,13 +4,7 @@ session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = $_POST['id'];
 
-    $db_host = "localhost";
-    $db_user = "codesnack";
-    $db_password = "";
-    $db_name = "codesnack";
-
-    $mysqli = new mysqli($db_host, $db_user, $db_password, $db_name);
-
+    include "connect-db.php";
     $query = "SELECT * FROM user WHERE id='$id'";
     $result = $mysqli->query($query);
 

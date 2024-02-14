@@ -23,12 +23,7 @@ if (strpos($uri, 'free-text.php') !== false) {
     $post_type = 4;
 }
 
-$db_host = "localhost";
-$db_user = "codesnack";
-$db_password = "";
-$db_name = "codesnack";
-
-$mysqli = new mysqli($db_host, $db_user, $db_password, $db_name);
+include "connect-db.php";
 $query = "INSERT INTO comment (userId, postId, comment, timeStamp) VALUES('$user_id', '$post_id', '$comment', '$current_time')";
 $mysqli->query($query);
 
