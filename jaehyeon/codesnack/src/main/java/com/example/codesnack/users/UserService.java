@@ -4,13 +4,16 @@ import java.util.Optional;
 
 public interface UserService {
     Optional<User> saveUser(UserDTO userDTO);
+    int getPoint();
     Optional<User> getUserById(Long userId);
     User authenticateUser(UserDTO userDTO);
 
     User getUserByNickname(String nickname);
 
-    public boolean isIdUnique(String id);
+    Optional<User> updateCurrentSessionNickname(String nickname);
 
-    public boolean isNicknameUnique(String nickname);
+    boolean isIdUnique(String id);
+
+    boolean isNicknameUnique(String nickname);
 
 }

@@ -46,48 +46,56 @@
     </nav>
 
     <section>
-        <h1>보유 포인트: <span id="point">0</span></h1>
-        <a href="">
-            <article>
-                <h2>닉네임 변경권</h2>
-                <button class="buy-btn">구매 </button>
-                <p>필요 포인트: <span id="pointValue"></span>p</p>
+        <h1>보유 포인트: <span th:text="${point}"></span></h1>
 
-            </article>
-        </a>
+        <article>
+            <h2>닉네임 변경권</h2>
+            <button class="buy-btn" onclick="showNicknameForm()">구매</button>
+            <p>필요 포인트: 100p</p>
+        </article>
 
-        <!-- 추가적인 공지사항 항목을 필요에 따라 추가 -->
+        <div id="nicknameForm" style="display:none">
+            <input type="text" id="newNicknameInput" placeholder="새로운 닉네임 입력" required>
+            <button type="button" onclick="updateNickname()">닉네임 변경</button>
+        </div>
+
     </section>
 
     <footer>
         © 2024 CodeSnack. All rights reserved.
     </footer>
-
-    <script>
-        const pointDisplay = document.getElementById('point');  // 포인트를 표시
-        let points = 500;
-        const itemPoint = 100;
-
-        document.getElementById("pointValue").textContent = itemPoint;
-        pointDisplay.textContent = points;
-
-
-        const buyButtons = document.querySelectorAll('.buy-btn');
-        buyButtons.forEach((button) => {
-            button.addEventListener('click', (event) => {
-                event.preventDefault(); // 기본 동작을 막음
-                if (points < itemPoint) {
-                    alert('포인트가 부족합니다');
-                } else if (confirm('구매하시겠습니까?')) {
-                    points -= itemPoint;
-                    pointDisplay.textContent = points;
-                    alert('구매가 완료되었습니다!');
-                } else {
-                    alert('취소하였습니다.');
-                }
-            });
-        });
-    </script>
 </body>
+
+<script>
+    function showNicknameForm() {
+        var form = document.getElementById('nicknameForm');
+        form.style.display = 'block';
+    }
+
+    function updateNickname() {
+        var newNickname = document.getElementById('newNicknameInput').value;
+
+        fetch('/pointShop/updateNickname', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: '_method=PATCH&newNickname=' + encodeURIComponent(newNickname),
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Nickname 업데이트 성공:', data);
+            document.getElementById('nicknameForm').style.display = 'none';
+        })
+        .catch(error => {
+            console.error('Nickname 업데이트 실패:', error);
+        });
+    }
+</script>
 
 </html>

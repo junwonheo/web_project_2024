@@ -5,28 +5,26 @@ import com.example.codesnack.comments.CommentService;
 import com.example.codesnack.notices.NoticeService;
 import com.example.codesnack.posts.Post;
 import com.example.codesnack.posts.PostService;
+import com.example.codesnack.users.User;
+import com.example.codesnack.users.UserService;
+import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 @Controller
+@RequiredArgsConstructor
 public class HomeController {
     private final PostService postService;
     private final NoticeService noticeService;
     private final CommentService commentService;
-
-    @Autowired
-    public HomeController(PostService postService, NoticeService noticeService, CommentService commentService) {
-        this.postService = postService;
-        this.noticeService = noticeService;
-        this.commentService = commentService;
-    }
+    private final UserService userService;
 
     @GetMapping("/")
     public String home() {
@@ -87,8 +85,17 @@ public class HomeController {
     }
 
     @GetMapping("/pointShop")
-    public String showPointShop() {
+    public String showPointShop(Model model) {
+        int point = this.userService.getPoint();
+        model.addAttribute("point", point);
         return "pointshop";
+    }
+
+    @PostMapping("/pointShop/updateNickname")
+    public String updateNickname(@RequestParam(name = "newNickname", required = true) String newNickname, HttpSession session) {
+        userService.updateCurrentSessionNickname(newNickname);
+        session.invalidate();
+        return "index";
     }
 
     @GetMapping("/writePostPage")
