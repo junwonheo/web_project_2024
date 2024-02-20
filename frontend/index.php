@@ -12,10 +12,10 @@
     <?php include '../header.php'; ?>
 
     <nav>
-        <div class="search-box">
-            <input type="text" placeholder="검색어를 입력하세요">
-            <button type="button">검색</button>
-        </div>
+        <form class="search-box" action="" method="get">
+            <input type="text" name="search" placeholder="검색어를 입력하세요">
+            <button type="submit">검색</button>
+        </form>
         <div class="nav-left">
             <a href="index.php">홈</a>|
             <a href="notice-board.php">공지사항</a> |
@@ -28,6 +28,9 @@
     </nav>
 
     <section>
+        <?php if (isset($_GET['search'])) {
+            include '../search-process.php';
+        } else { ?>
         <a href="notice-board.php">
             <article>
                 <h2>
@@ -72,6 +75,7 @@
 
         </a>
         <!-- 추가 게시물을 필요에 따라 추가 -->
+        <?php } ?>
     </section>
 
     <footer>

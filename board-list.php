@@ -25,7 +25,7 @@ if (isset($_GET['page'])) {
 $list_num = 9;
 $start = ($page - 1) * $list_num;
 
-$query = "SELECT post.postId, post.title, post.timeStamp, user.nickname
+$query = "SELECT post.postId, post.title, post.content, post.timeStamp, user.nickname
           FROM post
           INNER JOIN user ON post.userId = user.userId
           WHERE post.postType = $post_type
@@ -34,16 +34,24 @@ $query = "SELECT post.postId, post.title, post.timeStamp, user.nickname
 
 $result = $mysqli->query($query);
 
-if ($result && $result->num_rows > 0) {
+if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $post_id = $row['postId'];
-        $title = $row['title'];
+        $title_summary = substr($row['title'], 0, 25);
+        $content_summary = substr($row['content'], 0, 40);
+        if (strlen($row['title']) > 25) {
+            $title_summary .= "...";
+        }
+        if (strlen($row['content']) > 40) {
+            $content_summary .= "...";
+        }
         $timestamp = $row['timeStamp'];
         $nickname = $row['nickname'];
 
         echo '<a href="free-text.php?postid=' . $post_id . '" class="free-post-link">';
-        echo '<article class="free-post">';
-        echo '<h3>' . $title . '</h3>';
+        echo '<article>';
+        echo '<h3>' . $title_summary . '</h3>';
+        //echo '<p>' . $content_summary . '</p>';
         echo '<p>' . $timestamp . '</p>';
         echo '<p>' . $nickname . '</p>';
         echo '</article>';

@@ -13,7 +13,7 @@ if (isset($_GET['postid'])) {
 
     $route = "../images/";
 
-    if ($result && $result->num_rows > 0) {
+    if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             $title = $row['title'];
             $content = $row['content'];
