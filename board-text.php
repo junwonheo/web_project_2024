@@ -24,10 +24,10 @@ if (isset($_GET['postid'])) {
             echo '<p class="info2">' . $timestamp . '</p>';
             echo '<div class="text">';
             echo '<div class="title">' . $title . '</div>';
-            echo '<div class="content">' . $content . '</div>';
             if (!empty($image) && file_exists($route . $image)) {
-                echo '<div class="image"><img src="' . $route . $image . '"></div>';
+                echo '<br><div class="image"><img src="' . $route . $image . '" style="width:500px;"></div><br>';
             }
+            echo '<div class="content">' . $content . '</div>';
             echo '</div>';
         }
     }
