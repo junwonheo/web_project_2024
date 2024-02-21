@@ -25,7 +25,7 @@ $query = "SELECT comment.comment, comment.Timestamp, user.nickname
 
 $result = $mysqli->query($query);
 
-if ($result && $result->num_rows > 0) {
+if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $comment = $row['comment'];
         $timestamp = $row['Timestamp'];

@@ -22,7 +22,7 @@ if (isset($_GET['page'])) {
     $page = 1;
 }
 
-$list_num = 9;
+$list_num = 5;
 $start = ($page - 1) * $list_num;
 
 $query = "SELECT post.postId, post.title, post.content, post.timeStamp, user.nickname
@@ -37,25 +37,23 @@ $result = $mysqli->query($query);
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $post_id = $row['postId'];
-        $title_summary = substr($row['title'], 0, 25);
-        $content_summary = substr($row['content'], 0, 40);
-        if (strlen($row['title']) > 25) {
+        $title_summary = mb_substr($row['title'], 0, 20);
+        $content_summary = mb_substr($row['content'], 0, 40);
+        if (mb_strlen($row['title']) > 20) {
             $title_summary .= "...";
         }
-        if (strlen($row['content']) > 40) {
+        if (mb_strlen($row['content']) > 40) {
             $content_summary .= "...";
         }
         $timestamp = $row['timeStamp'];
         $nickname = $row['nickname'];
 
         echo '<a href="free-text.php?postid=' . $post_id . '" class="free-post-link">';
-        echo '<article>';
-        echo '<h3>' . $title_summary . '</h3>';
-        //echo '<p>' . $content_summary . '</p>';
-        echo '<p>' . $timestamp . '</p>';
-        echo '<p>' . $nickname . '</p>';
-        echo '</article>';
-        echo '</a>';
+        echo '<article><h3>' . $title_summary . '</h3>';
+        echo '<p id="nick">' . $nickname . '</p><br>';
+        echo '<h4>' . $content_summary . '</h4>';
+        echo '<p id="time">' . $timestamp . '</p>';
+        echo '</article></a>';
     }
 }
 
@@ -86,7 +84,7 @@ switch ($post_type) {
         break;
 }
 
-echo '<div class="pagination">';
+echo '<div class="pagination"><br>';
 if ($page > 1) {
     echo '<a class="pre" href="' . $post_type . '?page=' . ($page - 1) . '">이전</a>';
 }
@@ -96,4 +94,4 @@ for ($i = 1; $i <= $total_page; $i++) {
 if ($page < $total_page) {
     echo '<a class="next" href="' . $post_type . '?page=' . ($page + 1) . '">다음</a>';
 }
-echo '</div>';
+echo '<br><br><br></div>';

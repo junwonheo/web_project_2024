@@ -230,6 +230,8 @@ article {
     transition: transform 0.3s ease, background-color 0.3s ease; /* 트랜지션 효과 추가 */
     cursor: pointer;
     box-sizing: border-box;
+    position: relative;
+    min-height: 90px;
 }
 
 article:hover {
@@ -239,13 +241,24 @@ article:hover {
 
 article h3 {
     display: inline-block;
-    margin: 13px 5px;
-    width: 380px;
+    margin: 17px 25px 0px 5px;
 }
 
-article p {
-    float: right;
-    margin-left: 25px;
+article h4 {
+    display: inline-block;
+    margin: 17px 25px 17px 5px;
+}
+
+#nick {
+    position: absolute; /* 절대 위치 지정 */
+    right: 20px; /* 오른쪽 여백 20px */
+    top: 3px; /* 위쪽에 위치 */
+}
+
+#time {
+    position: absolute; /* 절대 위치 지정 */
+    right: 20px; /* 오른쪽 여백 20px */
+    top: 50px; /* 위쪽에 위치 */
 }
 
 /*페이징*/

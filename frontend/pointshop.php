@@ -28,46 +28,37 @@
     </nav>
 
     <section>
-        <h1>보유 포인트: <span id="point">0</span></h1>
+        <?php include "../point-process.php"; ?>
         <a href="">
             <article>
                 <h2>닉네임 변경권</h2>
-                <button class="buy-btn">구매 </button>
+                <button type="button" id="buy-btn">구매 </button>
                 <p>필요 포인트: <span id="pointValue"></span>p</p>
-
             </article>
         </a>
-
-        <!-- 추가적인 공지사항 항목을 필요에 따라 추가 -->
     </section>
 
     <footer>
         © 2024 CodeSnack. All rights reserved.
     </footer>
-
     <script>
-        const pointDisplay = document.getElementById('point');  // 포인트를 표시
-        let points = 500;
-        const itemPoint = 100;
+        document.getElementById("buy-btn").addEventListener("click", function () {
+            var isBuy = true;
+            fetch("../point-process.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: "buy=" + encodeURIComponent(isBuy),
+            })
+                .then(response => response.text())
+                .then(message => {
+                    document.getElementById('buy-btn').innerHTML = message;
 
-        document.getElementById("pointValue").textContent = itemPoint;
-        pointDisplay.textContent = points;
-
-
-        const buyButtons = document.querySelectorAll('.buy-btn');
-        buyButtons.forEach((button) => {
-            button.addEventListener('click', (event) => {
-                event.preventDefault(); // 기본 동작을 막음
-                if (points < itemPoint) {
-                    alert('포인트가 부족합니다');
-                } else if (confirm('구매하시겠습니까?')) {
-                    points -= itemPoint;
-                    pointDisplay.textContent = points;
-                    alert('구매가 완료되었습니다!');
-                } else {
-                    alert('취소하였습니다.');
-                }
-            });
+                    if (message.includes('사용 가능')) {
+                        document.getElementById("id").readOnly = true;
+                    }
+                });
         });
     </script>
 </body>
