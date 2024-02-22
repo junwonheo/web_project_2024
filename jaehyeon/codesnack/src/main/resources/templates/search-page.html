@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" th:href="@{/css/styles.css}" />
-    <title>CodeSnack</title>
+    <title>자유 게시판</title>
 </head>
 <body>
-
 <header>
     <div class="header-top">
         <!-- 로그인 성공 시에만 유저의 닉네임과 로그아웃 버튼을 표시 -->
@@ -27,13 +26,10 @@
 </header>
 
 <nav>
-    
     <!-- 검색 창 추가 -->
     <div class="search-box">
-        <form th:action="@{/search}" method="get">
-            <input type="text" id="searchInput" name="q" placeholder="검색어를 입력하세요">
-            <button type="submit">검색</button>
-        </form>
+        <input type="text" placeholder="검색어를 입력하세요" />
+        <button type="button">검색</button>
     </div>
     <div class="nav-left">
         <a th:href="@{/}">홈</a> | <a th:href="@{/noticeBoard}">공지사항</a> |
@@ -43,54 +39,19 @@
         <a th:href="@{/qnaBoard}">QnA 게시판</a> |
         <a th:href="@{/pointShop}">포인트샵</a>
     </div>
+    <button class="write-post-btn" th:onclick="|javascript:window.location='@{/writePostPage}'|">글 쓰기</button>
 </nav>
 
 <section>
-    <a th:href="@{/noticeBoard}">
+    <h2>검색 결과</h2>
+    <div th:each="post : ${searchResults}">
         <article>
-            <h2>
-                공지 사항
-            </h2>
+            <h3 th:text="${post.title}"></h3>
+            <p th:text="${post.content}"></p>
         </article>
-    </a>
-    <a th:href="@{/freeBoard}">
-        <article>
-            <h2>
-                자유 게시판
-            </h2>
-        </article>    
-    </a>
-    <a th:href="@{/marketBoard}">
-        <article>
-            <h2>
-                장터 게시판
-            </h2>
-        </article>
-        
-    </a>
-    <a th:href="@{/suggestionsBoard}">
-        <article>
-            <h2>
-                건의 게시판
-            </h2>
-        </article>
-        
-    </a>
-    <a th:href="@{/qnaBoard}">
-        <article>
-            <h2>
-                QnA 게시판
-            </h2>
-        </article>
-        
-    </a>
-    <!-- 추가 게시물을 필요에 따라 추가 -->
+    </div>
 </section>
 
-<footer>
-    © 2024 CodeSnack. All rights reserved.
-</footer>
-
+<footer>© 2024 CodeSnack. All rights reserved.</footer>
 </body>
-
 </html>

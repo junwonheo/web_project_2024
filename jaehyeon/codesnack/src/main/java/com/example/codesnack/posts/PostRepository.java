@@ -12,4 +12,5 @@ import java.util.Optional;
 public interface PostRepository extends JpaRepository<Post, Long> {
     Page<Post> findAllByPosttypeOrderByTimestampDesc(int posttype, Pageable pageable);
     Optional<Post> findByPostId(long postId);
+    Page<Post> findByKeywordsContainingIgnoreCase(String keyword, Pageable pageable);
 }

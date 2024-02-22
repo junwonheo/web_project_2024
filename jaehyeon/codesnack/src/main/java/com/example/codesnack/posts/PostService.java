@@ -11,4 +11,6 @@ public interface PostService {
     public Page<Post> getPostsByUserId(int posttype, int page, int size);
 
     public Post getPost(Long postId);
+
+    Page<Post> searchPosts(String keyword, int page, int size);
 }

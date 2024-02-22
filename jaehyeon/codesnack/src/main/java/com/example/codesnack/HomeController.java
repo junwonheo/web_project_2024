@@ -5,11 +5,9 @@ import com.example.codesnack.comments.CommentService;
 import com.example.codesnack.notices.NoticeService;
 import com.example.codesnack.posts.Post;
 import com.example.codesnack.posts.PostService;
-import com.example.codesnack.users.User;
 import com.example.codesnack.users.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -106,5 +104,11 @@ public class HomeController {
     @GetMapping("/writeNoticePage")
     public String showWriteNoticePage() {
         return "write-notice-page";
+    }
+
+    @GetMapping("/search")
+    public String searchPosts(@RequestParam(name = "q") String q, Model model) {
+        model.addAttribute("searchResults", postService.searchPosts(q, 0, 10));
+        return "search-page";
     }
 }

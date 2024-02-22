@@ -5,6 +5,7 @@ import com.example.codesnack.users.User;
 import com.example.codesnack.users.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,21 +17,11 @@ import java.sql.Timestamp;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class PostServiceImpl implements PostService {
     private final PostRepository postRepository;
     private final UserService userService;
     private final HttpServletRequest request;
-
-    @Autowired
-    public PostServiceImpl(
-        PostRepository postRepository,
-        UserService userService,
-        HttpServletRequest request
-    ) {
-        this.postRepository = postRepository;
-        this.userService = userService;
-        this.request = request;
-    }
 
 
     @Override
@@ -80,5 +71,11 @@ public class PostServiceImpl implements PostService {
         else {
             throw new DataNotFoundException("question not found");
         }
+    }
+
+    @Override
+    public Page<Post> searchPosts(String keyword, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by("timestamp").descending());
+        return postRepository.findByKeywordsContainingIgnoreCase(keyword, pageable);
     }
 }

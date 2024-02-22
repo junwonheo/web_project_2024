@@ -31,6 +31,9 @@ public class Post {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
 
+    @Column(columnDefinition = "TEXT")
+    private String keywords;
+
     @Column(nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private Timestamp timestamp;
 
