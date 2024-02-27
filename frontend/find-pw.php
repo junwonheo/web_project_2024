@@ -31,12 +31,12 @@
     <section id="login-section">
         <h2>비밀번호 변경</h2>
 
-        <form action="" method="post">
+        <form action="../find-pw-process.php" method="post">
             <label for="username">아이디:</label>
-            <input type="text" id="username" name="username" required>
+            <input type="text" id="id" name="id" required>
 
             <label for="name">이름:</label>
-            <input type="text" id="name" name="name" required>
+            <input type="text" id="username" name="username" required>
 
             <label for="qna">질문 및 답변:</label>
             <select name="question">
@@ -52,7 +52,7 @@
             <label for="nickname">비밀번호 변경 확인:</label>
             <input type="password" id="password_re" name="password_re" required>
 
-            <button type="submit">비밀번호 변경</button>
+            <button type="submit" id="find_pw_button">비밀번호 변경</button>
         </form>
 
     </section>
@@ -60,6 +60,17 @@
     <footer>
         © 2024 CodeSnack. All rights reserved.
     </footer>
+
+    <script>
+        document.getElementById("find_pw_button").addEventListener("click", function () {
+            var password = document.getElementById("password").value;
+            var password_re = document.getElementById("password_re").value;
+
+            if (password.trim() == "" || password_re.trim() == "") {
+                alert("빈칸없이 입력해주세요.");
+                event.preventDefault();
+            }})
+    </script>
 </body>
 
 </html>

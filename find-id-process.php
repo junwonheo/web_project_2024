@@ -1,5 +1,4 @@
 <?php
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $nickname = $_POST['nickname'];
@@ -15,6 +14,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<script>location.href = 'frontend/login.php';</script>";
     } else {
         echo "<script>alert('이름 또는 닉네임이 존재하지 않습니다.');</script>";
-        echo "<script>location.href = 'frontend/fing-id.php';</script>";
+        echo "<script>window.history.go(-1);</script>";
     }
 }

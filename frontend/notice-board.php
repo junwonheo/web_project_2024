@@ -25,7 +25,7 @@
       <a href="qna-board.php">QnA 게시판</a> |
       <a href="pointshop.php">포인트샵</a>
     </div>
-    <?php if (isset($_SESSION['id']) && $_SESSION['id'] === "admin") { ?>
+    <?php if (isset($_SESSION['id']) && $_SESSION['id'] == "admin") { ?>
       <button class="write-post-btn" onclick="location.href='../session.php'">글 쓰기</button>
     <?php } ?>
   </nav>

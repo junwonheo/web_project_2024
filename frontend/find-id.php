@@ -47,7 +47,6 @@
             <input type="text" id="nickname" name="nickname" required>
 
             <button type="submit" id="find_id_button">아이디 찾기</button>
-
         </form>
     </section>
 
@@ -60,7 +59,7 @@
             var username = document.getElementById("username").value;
             var nickname = document.getElementById("nickname").value;
 
-            if (username.trim() === "" || nickname.trim() === "") {
+            if (username.trim() == "" || nickname.trim() == "") {
                 alert("이름과 닉네임을 모두 입력해주세요.");
                 event.preventDefault();
             }})

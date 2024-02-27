@@ -39,7 +39,7 @@
         document.getElementById("is_buy_button").addEventListener("click", function () {
             var newNickname = prompt('변경할 닉네임을 입력해주세요.');
 
-            if (newNickname.trim() === '') {
+            if (newNickname.trim() == '') {
                 alert('닉네임을 입력해주세요.');
                 return;
             }

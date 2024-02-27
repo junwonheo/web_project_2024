@@ -32,7 +32,7 @@
             <div id="write-post-top">
                 <input type="hidden" name="id" value="<?php echo $_SESSION['id']; ?>">
                 <select id="board-select" name="board">
-                    <?php if (isset($_SESSION['id']) && $_SESSION['id'] === "admin") { ?>
+                    <?php if (isset($_SESSION['id']) && $_SESSION['id'] == "admin") { ?>
                         <option value="notice-board">공지사항</option>
                     <?php } ?>
                     <option value="free-board">자유 게시판</option>

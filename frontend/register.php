@@ -72,7 +72,7 @@
         document.getElementById("id_check_button").addEventListener("click", function () {
             var id = document.getElementById("id").value;
 
-            if (id.trim() === "") {
+            if (id.trim() == "") {
                 alert("아이디를 입력하세요.");
                 return;
             }
@@ -97,7 +97,7 @@
         document.getElementById("nickname_check_button").addEventListener("click", function () {
             var nickname = document.getElementById("nickname").value;
 
-            if (nickname.trim() === "") {
+            if (nickname.trim() == "") {
                 alert("닉네임을 입력하세요.");
                 return;
             }
@@ -119,6 +119,16 @@
                     }
                 });
         });
+        document.getElementById("submit_button").addEventListener("click", function () {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            var answer = document.getElementById("answer").value;
+
+            if (username.trim() == "" || password.trim() == "" || answer.trim() == "") {
+                alert("빈칸없이 입력해주세요.");
+                event.preventDefault();
+            }
+        })
     </script>
 
 </body>
