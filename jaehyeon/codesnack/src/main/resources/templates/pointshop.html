@@ -30,6 +30,12 @@
     </header>
 
     <nav>
+        <div class="search-box">
+            <form th:action="@{/search}" method="get">
+                <input type="text" id="searchInput" name="q" placeholder="검색어를 입력하세요">
+                <button type="submit">검색</button>
+            </form>
+        </div>
         <div class="nav-left">
             <a th:href="@{/}">홈</a> | <a th:href="@{/noticeBoard}">공지사항</a> |
             <a th:href="@{/freeBoard}">자유 게시판</a> |

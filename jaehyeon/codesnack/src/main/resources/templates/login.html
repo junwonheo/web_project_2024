@@ -26,6 +26,12 @@
         </header>
 
         <nav>
+            <div class="search-box">
+                <form th:action="@{/search}" method="get">
+                    <input type="text" id="searchInput" name="q" placeholder="검색어를 입력하세요">
+                    <button type="submit">검색</button>
+                </form>
+            </div>
             <div class="nav-left">
                 <a th:href="@{/}">홈</a> | <a th:href="@{/noticeBoard}">공지사항</a> |
                 <a th:href="@{/freeBoard}">자유 게시판</a> |
@@ -33,10 +39,6 @@
                 <a th:href="@{/suggestionsBoard}">건의 게시판</a> |
                 <a th:href="@{/qnaBoard}">QnA 게시판</a> |
                 <a th:href="@{/pointShop}">포인트샵</a>
-            </div>
-            <div class="search-box">
-                <input type="text" placeholder="검색어를 입력하세요">
-                <button type="button">검색</button>
             </div>
     
         </nav>
@@ -54,9 +56,9 @@
             <button type="submit">로그인</button>
         </form>
 
-        <p>아직 계정이 없으신가요? <a href="register.html">회원가입</a></p>
+        <p>아직 계정이 없으신가요? <a th:href="@{/register}">회원가입</a></p>
         <p th:if="${loginSuccess} == false" style="color:blue">로그인 실패. 아이디 또는 비밀번호를 확인하세요.<br></p>
-        <p>아이디 혹은 비밀번호를 잊어버리셨나요? <br> <a href="find-id.html">아이디 찾기</a> <a href="find-pw.html">비밀번호 찾기</a></p>
+        <p>아이디 혹은 비밀번호를 잊어버리셨나요? <br> <a th:href="@{/findIdPage}">아이디 찾기</a> <a th:href="@{/passwordResetPage}"}>비밀번호 찾기</a></p>
     </section>
 
     <footer>

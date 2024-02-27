@@ -14,6 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -74,8 +75,13 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public Page<Post> searchPosts(String keyword, int page, int size) {
-        Pageable pageable = PageRequest.of(page, size, Sort.by("timestamp").descending());
-        return postRepository.findByKeywordsContainingIgnoreCase(keyword, pageable);
+    public List<Post> getAllPosts() {
+        return postRepository.findAll();
+    }
+
+    @Override
+    public List<Post> searchPosts(String keyword) {
+        // 검색어를 이용하여 게시글을 검색하는 로직 구현
+        return postRepository.findByTitleContainingIgnoreCase(keyword);
     }
 }

@@ -93,4 +93,24 @@ public class UserServiceImpl implements UserService {
     public boolean isNicknameUnique(String nickname) {
         return !userRepository.findByNickname(nickname).isPresent();
     }
+
+
+    @Override
+    public String findUsername(String username, String nickname) {
+        Optional<User> userOptional = userRepository.findByUsernameAndNickname(username, nickname);
+
+        return userOptional.map(User::getId).orElse(null);
+    }
+
+    public boolean resetPassword(String id, String username, int question, String answer, String password, String passwordRe) {
+        Optional<User> optionalUser = userRepository.findByIdAndUsernameAndQuestionAndAnswer(id, username, question, answer);
+
+        if (optionalUser.isPresent() && password.equals(passwordRe)) {
+            User user = optionalUser.get();
+            user.setPasswd(password);
+            userRepository.save(user);
+            return true;
+        }
+        return false;
+    }
 }

@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/css/styles.css}" />
-    <title>자유 게시판</title>
+    <title>아이디 찾기 결과</title>
 </head>
 <body>
 <header>
     <div class="header-top">
         <!-- 로그인 성공 시에만 유저의 닉네임과 로그아웃 버튼을 표시 -->
         <span th:if="${session.user}">
-            <span th:text="${session.user}">User</span>
-            <a th:href="@{/logout}">로그아웃</a>
-        </span>
+                    <span th:text="${session.user}">User</span>
+                    <a th:href="@{/logout}">로그아웃</a>
+                </span>
         <!-- 로그인하지 않은 경우에 로그인과 회원가입 버튼을 표시 -->
         <span th:unless="${session.user}">
-            <a th:href="@{/login}">로그인</a>
-            <a th:href="@{/register}">회원가입</a>
-        </span>
+                    <a th:href="@{/login}">로그인</a>
+                    <a th:href="@{/register}">회원가입</a>
+                </span>
     </div>
     <div class="header-main">
         <h1 class="header-title"><a th:href="@{/}">CodeSnack</a></h1>
@@ -26,13 +26,6 @@
 </header>
 
 <nav>
-    <!-- 검색 창 추가 -->
-    <div class="search-box">
-        <form th:action="@{/search}" method="get">
-            <input type="text" id="searchInput" name="q" placeholder="검색어를 입력하세요">
-            <button type="submit">검색</button>
-        </form>
-    </div>
     <div class="nav-left">
         <a th:href="@{/}">홈</a> | <a th:href="@{/noticeBoard}">공지사항</a> |
         <a th:href="@{/freeBoard}">자유 게시판</a> |
@@ -41,19 +34,27 @@
         <a th:href="@{/qnaBoard}">QnA 게시판</a> |
         <a th:href="@{/pointShop}">포인트샵</a>
     </div>
-    <button class="write-post-btn" th:onclick="|javascript:window.location='@{/writePostPage}'|">글 쓰기</button>
+    <div class="search-box">
+        <form th:action="@{/search}" method="get">
+            <input type="text" id="searchInput" name="q" placeholder="검색어를 입력하세요">
+            <button type="submit">검색</button>
+        </form>
+    </div>
+
 </nav>
 
-<section>
-    <h2>검색 결과</h2>
-    <div th:each="post : ${searchResults}">
-        <article>
-            <h3 th:text="${post.title}"></h3>
-            <p th:text="${post.content}"></p>
-        </article>
+<section id="result-section">
+    <h2>아이디 찾기 결과</h2>
+
+    <div th:if="${foundUsername != null}">
+        <p>찾은 아이디: <span th:text="${foundUsername}"></span></p>
     </div>
+
+
 </section>
 
-<footer>© 2024 CodeSnack. All rights reserved.</footer>
+<footer>
+    © 2024 CodeSnack. All rights reserved.
+</footer>
 </body>
 </html>

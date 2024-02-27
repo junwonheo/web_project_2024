@@ -16,4 +16,7 @@ public interface UserService {
 
     boolean isNicknameUnique(String nickname);
 
+    String findUsername(String username, String nickname);
+
+    boolean resetPassword(String userId, String username, int question, String answer, String password, String passwordRe);
 }

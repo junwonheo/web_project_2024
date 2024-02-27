@@ -28,8 +28,10 @@
         <nav>
             <!-- 검색 창 추가 -->
             <div class="search-box">
-                <input type="text" placeholder="검색어를 입력하세요">
-                <button type="button">검색</button>
+                <form th:action="@{/search}" method="get">
+                    <input type="text" id="searchInput" name="q" placeholder="검색어를 입력하세요">
+                    <button type="submit">검색</button>
+                </form>
             </div>
             <div class="nav-left">
                 <a th:href="@{/}">홈</a> | <a th:href="@{/noticeBoard}">공지사항</a> |

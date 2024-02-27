@@ -35,34 +35,37 @@
                 <a th:href="@{/pointShop}">포인트샵</a>
             </div>
             <div class="search-box">
-                <input type="text" placeholder="검색어를 입력하세요">
-                <button type="button">검색</button>
+                <form th:action="@{/search}" method="get">
+                    <input type="text" id="searchInput" name="q" placeholder="검색어를 입력하세요">
+                    <button type="submit">검색</button>
+                </form>
             </div>
     
         </nav>
 
-    <section id="login-section">
+    <section id="find-pw-section">
         <h2>비밀번호 변경</h2>
 
-        <form action="login-process.php" method="post">
-            <label for="username">아이디:</label>
+        <form action="/resetPassword" method="post">
+            <label for="id">아이디:</label>
+            <input type="text" id="id" name="id" required>
+
+            <label for="username">이름:</label>
             <input type="text" id="username" name="username" required>
 
-            <label for="name">이름:</label>
-            <input type="text" id="name" name="name" required>
-
-            <label for="qna">질문 및 답변:</label>
-            <select>
-                <option value="1" selected>출생지는 어디인가요?</option>
-                <option value="2">가장 친한 친구의 이름은 무엇인가요?</option>
-                <option value="3">좋아하는 동물은 무엇인가요?</option>
+            <label for="question" id="questionLabel">비밀번호 분실 시 질문 및 답변:</label>
+            <select id="question" name="question">
+                <option value=1>출생지는 어디인가요?</option>
+                <option value=2>가장 친한 친구의 이름은 무엇인가요?</option>
+                <option value=3>좋아하는 동물은 무엇인가요?</option>
             </select><br>
-            <input type="text" id="qna" name="qna" required><br>
+            <label for="answer"></label>
+            <input type="text" id="answer" name="answer" required><br>
 
-            <label for="nickname">비밀번호 변경:</label>
+            <label for="password">비밀번호 변경:</label>
             <input type="password" id="password" name="password" required>
 
-            <label for="nickname">비밀번호 변경 확인:</label>
+            <label for="password_re">비밀번호 변경 확인:</label>
             <input type="password" id="password_re" name="password_re" required>
             
             <button type="submit">비밀번호 변경</button>

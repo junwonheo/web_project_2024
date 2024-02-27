@@ -106,9 +106,62 @@ public class HomeController {
         return "write-notice-page";
     }
 
+    @GetMapping("/findIdPage")
+    public String showFindIdPage() {
+        return "find-id";
+    }
+
+    @GetMapping("/passwordResetPage")
+    public String showFindPwPage() {
+        return "find-pw";
+    }
+
     @GetMapping("/search")
-    public String searchPosts(@RequestParam(name = "q") String q, Model model) {
-        model.addAttribute("searchResults", postService.searchPosts(q, 0, 10));
+    public String searchPosts(@RequestParam(name = "q", required = false) String q, Model model) {
+        List<Post> posts;
+        if (q != null && !q.isEmpty()) {
+            // 검색어가 있을 경우 검색 수행
+            posts = postService.searchPosts(q);
+        } else {
+            // 검색어가 없을 경우 모든 게시글 조회
+            posts = postService.getAllPosts();
+        }
+
+        model.addAttribute("searchResults", posts);
         return "search-page";
+    }
+
+
+    @PostMapping("/findId")
+    public String findUsername(@RequestParam("username") String username,
+                               @RequestParam("nickname") String nickname,
+                               Model model) {
+        String foundUsername = userService.findUsername(username, nickname);
+
+        if (foundUsername != null) {
+            model.addAttribute("foundUsername", foundUsername);
+            return "/findUsernameResult";
+        } else {
+            model.addAttribute("message", "해당하는 아이디를 찾을 수 없습니다.");
+            return "redirect:/findUsernameFail";
+        }
+    }
+
+    @PostMapping("/resetPassword")
+    public String resetPassword(@RequestParam("id") String id,
+                                @RequestParam("username") String username,
+                                @RequestParam("question") int question,
+                                @RequestParam("answer") String answer,
+                                @RequestParam("password") String password,
+                                @RequestParam("password_re") String passwordRe,
+                                Model model) {
+
+        if (userService.resetPassword(id, username, question, answer, password, passwordRe)) {
+            model.addAttribute("message", "비밀번호가 성공적으로 변경되었습니다.");
+            return "/findPwResult";
+        } else {
+            model.addAttribute("message", "비밀번호 변경에 실패하였습니다.");
+            return "redirect:/resetPasswordFail";
+        }
     }
 }

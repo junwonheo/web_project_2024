@@ -35,21 +35,23 @@
             <a th:href="@{/pointShop}">포인트샵</a>
         </div>
         <div class="search-box">
-            <input type="text" placeholder="검색어를 입력하세요">
-            <button type="button">검색</button>
+            <form th:action="@{/search}" method="get">
+                <input type="text" id="searchInput" name="q" placeholder="검색어를 입력하세요">
+                <button type="submit">검색</button>
+            </form>
         </div>
 
     </nav>
 
-    <section id="login-section">
-        <h2>비밀번호 찾기</h2>
+    <section id="find-id-section">
+        <h2>아이디 찾기</h2>
 
-        <form action="" method="post">
-            <label for="username">아이디:</label>
+        <form action="/findId" method="post">
+            <label for="username">이름:</label>
             <input type="text" id="username" name="username" required>
 
             <label for="nickname">닉네임:</label>
-            <input type="password" id="nickname" name="nickname" required>
+            <input type="text" id="nickname" name="nickname" required>
 
             <button type="submit">아이디 찾기</button>
 

@@ -8,9 +8,11 @@ import java.util.Optional;
 public interface PostService {
     Optional<Post> savePost(PostDTO postDTO);
 
-    public Page<Post> getPostsByUserId(int posttype, int page, int size);
+     Page<Post> getPostsByUserId(int posttype, int page, int size);
 
-    public Post getPost(Long postId);
+     Post getPost(Long postId);
 
-    Page<Post> searchPosts(String keyword, int page, int size);
+    List<Post> getAllPosts();
+
+    List<Post> searchPosts(String keyword);
 }
