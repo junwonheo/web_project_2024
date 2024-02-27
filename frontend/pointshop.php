@@ -55,10 +55,6 @@
                 .then(message => {
                     document.getElementById('is_buy_button').innerHTML = message;
                 })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert(error);
-                })
         })
     </script>
 

@@ -25,15 +25,9 @@ if (isset($_SESSION['id']) && isset($_POST['newNickname'])) {
                 $_SESSION['nickname'] = $new_nickname;
                 echo "<script>alert('닉네임이 변경되었습니다.'); window.location.href = 'pointshop.php';</script>";
                 exit;
-            } else {
-                echo "<script>alert('쿼리 실행 중 오류가 발생했습니다.');</script>";
             }
         } else {
             echo "<script>alert('포인트가 부족합니다.');</script>";
         }
-    } else {
-        echo "<script>alert('사용자 정보를 가져오는 중 오류가 발생했습니다.');</script>";
     }
-} else {
-    echo "<script>alert('요청이 올바르지 않습니다.');</script>";
 }

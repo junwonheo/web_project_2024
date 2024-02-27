@@ -37,16 +37,16 @@
     </nav>
 
     <section id="login-section">
-        <h2>비밀번호 찾기</h2>
+        <h2>아이디 찾기</h2>
 
-        <form action="" method="post">
-            <label for="username">아이디:</label>
+        <form action="../find-id-process.php" method="post">
+            <label for="username">이름:</label>
             <input type="text" id="username" name="username" required>
 
             <label for="nickname">닉네임:</label>
-            <input type="password" id="nickname" name="nickname" required>
+            <input type="text" id="nickname" name="nickname" required>
 
-            <button type="submit">아이디 찾기</button>
+            <button type="submit" id="find_id_button">아이디 찾기</button>
 
         </form>
     </section>
@@ -54,6 +54,17 @@
     <footer>
         © 2024 CodeSnack. All rights reserved.
     </footer>
+
+    <script>
+        document.getElementById("find_id_button").addEventListener("click", function () {
+            var username = document.getElementById("username").value;
+            var nickname = document.getElementById("nickname").value;
+
+            if (username.trim() === "" || nickname.trim() === "") {
+                alert("이름과 닉네임을 모두 입력해주세요.");
+                event.preventDefault();
+            }})
+    </script>
 </body>
 
 </html>
