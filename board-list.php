@@ -48,13 +48,53 @@ if ($result->num_rows > 0) {
         $timestamp = $row['timeStamp'];
         $nickname = $row['nickname'];
 
-        echo '<a href="free-text.php?postid=' . $post_id . '" class="free-post-link">';
+        switch ($post_type) {
+            case 0:
+                $post_type = "notice-text.php";
+                break;
+            case 1:
+                $post_type = "free-text.php";
+                break;
+            case 2:
+                $post_type = "market-text.php";
+                break;
+            case 3:
+                $post_type = "suggestions-text.php";
+                break;
+            case 4:
+                $post_type = "qna-text.php";
+                break;
+            default:
+                break;
+        }
+
+        echo '<a href="' . $post_type . '?postid=' . $post_id . '" class="free-post-link">';
         echo '<article><h3>' . $title_summary . '</h3>';
         echo '<p id="nick">' . $nickname . '</p><br>';
         echo '<h4>' . $content_summary . '</h4>';
         echo '<p id="time">' . $timestamp . '</p>';
         echo '</article></a>';
     }
+}
+
+switch ($post_type) {
+    case "notice-text.php":
+        $post_type = 0;
+        break;
+    case "free-text.php":
+        $post_type = 1;
+        break;
+    case "market-text.php":
+        $post_type = 2;
+        break;
+    case "suggestions-text.php":
+        $post_type = 3;
+        break;
+    case "qna-text.php":
+        $post_type = 4;
+        break;
+    default:
+        break;
 }
 
 // pagination
