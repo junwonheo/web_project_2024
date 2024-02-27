@@ -90,8 +90,9 @@ footer {
     text-align: center;
     margin-top: auto;
 }
-#index-header-padding{
-    height: 55px;
+
+#header-nickname {
+    display: contents;
 }
 
 /*로그인 페이지 관련*/

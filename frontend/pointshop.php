@@ -28,39 +28,40 @@
     </nav>
 
     <section>
-        <?php include "../point-process.php"; ?>
-        <a href="">
-            <article>
-                <h2>닉네임 변경권</h2>
-                <button type="button" id="buy-btn">구매 </button>
-                <p>필요 포인트: <span id="pointValue"></span>p</p>
-            </article>
-        </a>
+        <?php include "../pointshop-load.php"; ?>
     </section>
 
     <footer>
         © 2024 CodeSnack. All rights reserved.
     </footer>
+
     <script>
-        document.getElementById("buy-btn").addEventListener("click", function () {
-            var isBuy = true;
+        document.getElementById("is_buy_button").addEventListener("click", function () {
+            var newNickname = prompt('변경할 닉네임을 입력해주세요.');
+
+            if (newNickname.trim() === '') {
+                alert('닉네임을 입력해주세요.');
+                return;
+            }
+
             fetch("../point-process.php", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded",
                 },
-                body: "buy=" + encodeURIComponent(isBuy),
+                body: "newNickname=" + encodeURIComponent(newNickname),
             })
                 .then(response => response.text())
                 .then(message => {
-                    document.getElementById('buy-btn').innerHTML = message;
-
-                    if (message.includes('사용 가능')) {
-                        document.getElementById("id").readOnly = true;
-                    }
-                });
-        });
+                    document.getElementById('is_buy_button').innerHTML = message;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert(error);
+                })
+        })
     </script>
+
 </body>
 
 </html>

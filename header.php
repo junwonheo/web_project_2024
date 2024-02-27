@@ -16,7 +16,7 @@ session_start();
     <header>
         <?php if (isset($_SESSION['id'])) { ?>
             <div class="header-top">
-                <?php echo "<p>" . $_SESSION['id']  . "</p>"; ?>
+                <?php echo "<a href='' id='header-nickname'>" . $_SESSION['nickname']  . "</a>"; ?>
                 <a href="../logout.php">로그아웃</a>
             </div>
         <?php } else { ?>
