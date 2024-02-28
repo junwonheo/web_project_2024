@@ -35,18 +35,29 @@ if($sqlResult->num_rows > 0){
         $posts[] = $row;
     }
 }
-$total = $conn->query("SELECT COUNT(*) as total FROM post")->fetch_assoc()['total'];
+$total = $conn->query("SELECT COUNT(*) as total FROM post where postType = {$boardType[$explodeBoard]}")->fetch_assoc()['total'];
 $totalPage = ceil($total/$perPage);
-$conn->close();
 }
 
 if(substr($board,-4,4) == 'text'){   // 게시물 상세 페이지 렌더링
+    $commentItems = [];
+    $commentSql = "select u.nickname, c.comment from comment as c, user as u  where u.userId = c.userId and postId = {$_GET['postId']}";
+    $commentSqlResult = $conn->query($commentSql);
+
+    if($commentSqlResult->num_rows > 0){
+        while($row = $commentSqlResult->fetch_assoc()){
+            $commentItems[] = ['nickname' => $row['nickname'], 'comment' => $row['comment']];
+        }
+    }
+
 echo $twig->render($board . '.html',
     ['nickname' => $nickname,
      'posts' => $posts,
      'currentPage' => $currentPage,
      'perPage' => $perPage,
-     'postId' => isset($_GET['postId'])?$_GET['postId']:'', ]);
+     'postId' => isset($_GET['postId'])?$_GET['postId']:'',
+     'commentItems' => $commentItems
+    ]);
 }
 elseif( substr($board,-5,5) == 'board'){                                   // 게시판 페이지 렌더링
 echo $twig->render($board . '.html',
@@ -57,6 +68,17 @@ echo $twig->render($board . '.html',
      'totalPage' => $totalPage,
      'boardType' => isset($boardType[$explodeBoard])?$boardType[$explodeBoard]:'',
      'board' => $explodeBoard
+]);
+}
+elseif($board == 'pointshop'){
+    $point = 0;
+    if($nickname){
+        $sql = "select point from user where nickname = '{$nickname}'";
+        $point = $conn->query($sql)->fetch_assoc()['point'];
+    }
+    echo $twig->render($board . '.html',
+    ['nickname' => $nickname,
+     'point' => (int)$point
 ]);
 }
 else {            // 그 외 페이지 렌더링

@@ -14,29 +14,22 @@
           <form action="comment-process.php" method="post">
             <label for="comment">댓글 내용</label>
             <textarea id="comment" name="comment" rows="4"></textarea>
-            <input type="hidden" name="postType" value="">
+            <input type="hidden" name="postId" value="{{postId}}">
             <button type="submit">등록</button>
           </form>
         </div>
-        <script>
-          
-        </script>
         <div class="comment_list">
           <!-- 댓글 리스트  -->
           <h2>댓글 목록</h2>
           <ul>
+            {% for commentItem in commentItems %}
             <li>
               <div class="comment_info">
-                <span class="comment_author">닉네임</span>
+                <span class="comment_author">{{commentItem.nickname}}</span>
               </div>
-              <div class="comment_text">댓글 내용</div>
+              <div class="comment_text">{{commentItem.comment}}</div>
             </li>
-            <li>
-              <div class="comment_info">
-                <span class="comment_author">닉네임</span>
-              </div>
-              <div class="comment_text">댓글 내용2</div>
-            </li>
+            {% endfor %}
           </ul>
         </div>
       </div>

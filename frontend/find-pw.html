@@ -14,26 +14,26 @@
     <section id="login-section">
         <h2>비밀번호 변경</h2>
 
-        <form action="login-process.php" method="post">
+        <form action="find-pw-process.php" method="post">
             <label for="username">아이디:</label>
-            <input type="text" id="username" name="username" required>
+            <input type="text" name="id" required>
 
             <label for="name">이름:</label>
-            <input type="text" id="name" name="name" required>
+            <input type="text" name="userName" required>
 
             <label for="qna">질문 및 답변:</label>
-            <select>
+            <select name="question">
                 <option value="1" selected>출생지는 어디인가요?</option>
                 <option value="2">가장 친한 친구의 이름은 무엇인가요?</option>
                 <option value="3">좋아하는 동물은 무엇인가요?</option>
             </select><br>
-            <input type="text" id="qna" name="qna" required><br>
+            <input type="text" name="answer" required><br>
 
             <label for="nickname">비밀번호 변경:</label>
-            <input type="password" id="password" name="password" required>
+            <input type="password" name="password" required>
 
             <label for="nickname">비밀번호 변경 확인:</label>
-            <input type="password" id="password_re" name="password_re" required>
+            <input type="password" name="password_re" required>
             
             <button type="submit">비밀번호 변경</button>
         </form>

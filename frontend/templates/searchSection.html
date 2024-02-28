@@ -1,0 +1,60 @@
+<section>
+    {% for post in posts %}
+    {% if post.postType == 0 %}
+    <a href="/index.php?board=notice-text&postId={{post.postId}}">
+        <article>
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.content }}</p>
+            <p>Posted by {{post.nickname}} at {{ post.timeStamp }}</p>
+        </article>
+    </a>
+    {% endif %}
+    {% if post.postType == 1 %}
+    <a href="/index.php?board=free-text&postId={{post.postId}}">
+        <article>
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.content }}</p>
+            <p>Posted by {{post.nickname}} at {{ post.timeStamp }}</p>
+        </article>
+    </a>
+    {% endif %}
+    {% if post.postType == 2 %}
+    <a href="/index.php?board=market-text&postId={{post.postId}}">
+        <article>
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.content }}</p>
+            <p>Posted by {{post.nickname}} at {{ post.timeStamp }}</p>
+        </article>
+    </a>
+    {% endif %}
+    {% if post.postType == 3 %}
+    <a href="/index.php?board=suggestions-text&postId={{post.postId}}">
+        <article>
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.content }}</p>
+            <p>Posted by {{post.nickname}} at {{ post.timeStamp }}</p>
+        </article>
+    </a>
+    {% endif %}
+    {% if post.postType == 4 %}
+    <a href="/index.php?board=qna-text&postId={{post.postId}}">
+        <article>
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.content }}</p>
+            <p>Posted by {{post.nickname}} at {{ post.timeStamp }}</p>
+        </article>
+    </a>
+    {% endif %}
+    {% endfor %}
+
+
+    <div align="center" style="font-size: 20px;">
+        {% for i in 1..totalPage %}
+        {% if i == currentPage %}
+        <b><a href="search-process.php?search={{search}}&currentPage={{i}}"> {{i}} </a></b>
+        {% else %}
+        <a href="search-process.php?search={{search}}&currentPage={{i}}"> {{i}} </a>
+        {% endif %}
+        {% endfor %}
+    </div>
+</section>

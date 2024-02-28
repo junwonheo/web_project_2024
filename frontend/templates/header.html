@@ -2,7 +2,9 @@
     <div class="header-top">
       {% if nickname %}
       <b>Hello, {{nickname}}</b>
-
+      <form action="logout.php" method="post">
+        <button type="submit" name="logout" style="background-color: black; color: white; border: none; padding: 5px 10px; cursor: pointer; font-size: 12px; border-radius: 3px;">로그아웃</button>
+    </form>    
       {% else %}
       <a href="/index.php?board=login">로그인</a>
       <a href="/index.php?board=register">회원가입</a>

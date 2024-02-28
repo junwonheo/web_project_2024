@@ -7,9 +7,10 @@ $conn=mysqli_connect($host,$user,$pw,$dbname) or die("can't access DB");
 
 session_start();
 
-if(!$_SESSION['nickname']){
-    echo "<script>alert('로그인 먼저 해주세요'); location.href='/index.php?page=login.html.twig'</script>";
+if(!isset($_SESSION['nickname'])){
+    die("<script>alert('로그인 먼저 해주세요'); location.href='/index.php?board=login';</script>");
 }
+$image='';
 $userId=$_SESSION['userId'];
 $board=$_POST['board'];
 $title=$_POST['title'];
@@ -28,11 +29,18 @@ if (isset($_FILES['image'])) {
 else{
     $image='';
 }
+
+if($board == 0){
+    if($_SESSION['nickname'] !== 'admin'){
+        die("<script>alert('admin 계정만 공지사항 게시물 작성 가능합니다');location.href='index.php?board=write-post-page'</script>");
+    }
+}
+
 $result=mysqli_query($conn,"insert into post (userId, postType, title, content, image) values ('$userId', '$board','$title' ,'$content', '$image')");
 if($result){
-    echo "<script>alert('게시글 업로드에 성공했습니다!'); location.href='/index.php?board=index'</script>";
+    die("<script>alert('게시글 업로드에 성공했습니다!'); location.href='/index.php?board=index'</script>");
 }
 else {
-    echo "<script>alert('게시글 업로드에 실패했습니다!'); location.href='/index.php?board=index'</script>";
+    die("<script>alert('게시글 업로드에 실패했습니다!'); location.href='/index.php?board=index'</script>");
 }
 ?>
