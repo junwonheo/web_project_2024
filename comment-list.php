@@ -19,7 +19,7 @@ $post_id = isset($_GET['postid']) ? $_GET['postid'] : '';
 $query = "SELECT comment.comment, comment.Timestamp, user.nickname
           FROM comment
           INNER JOIN post ON comment.postId = post.postId
-          INNER JOIN user ON post.userId = user.userId
+          INNER JOIN user ON comment.userId = user.userId
           WHERE comment.postId = $post_id
           ORDER BY comment.Timestamp DESC";
 
@@ -32,7 +32,7 @@ if ($result->num_rows > 0) {
         $nickname = $row['nickname'];
 
         echo '<li><div class="comment_info">';
-        echo '<p class="info2">' . $timestamp . '</p>';
+        echo '<p class="info3">' . $timestamp . '</p>';
         echo '<span class="comment_author">' . $nickname . '</span></div>';
         echo '<div class="comment_text">' . $comment . '</div></li>';
     }

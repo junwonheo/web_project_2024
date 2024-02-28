@@ -33,7 +33,7 @@
 
     <div class="comment_form">
       <h2>댓글 작성</h2>
-      <form method="post">
+      <form enctype="multipart/form-data" action="../write-comment.php?postid=<?php echo $post_id ?>" method="post">
         <label for="comment">댓글 내용</label>
         <textarea id="comment" name="comment" rows="4"></textarea>
         <button type="submit">등록</button>

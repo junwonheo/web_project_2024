@@ -14,12 +14,14 @@ $current_time = date('Y-m-d H:i:s');
 // image
 if ($_FILES['image']['error'] == UPLOAD_ERR_OK) {
     $target_dir = "images/";
-    $target_file = $target_dir . basename($_FILES["image"]["name"]);
+    $file_extension = pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION);
+    $image = uniqid() . '.' . $file_extension;
+    $target_file = $target_dir . $image;
     move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
-    $image = $_FILES['image']['name'];
 } else {
     $image = '';
 }
+
 
 // post_type
 switch ($board) {

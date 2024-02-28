@@ -5,9 +5,11 @@ $user_id = $_SESSION['userId'];
 $post_id = $_GET['postid'];
 $comment = $_POST['comment'];
 
+echo "<script>alert('" . $user_id . "');</script>";
+
 // current_time
 date_default_timezone_set('Asia/Seoul');
-$current_time = date('Y-m-d H:i:ㅋs');
+$current_time = date('Y-m-d H:i:s');
 
 // post_type
 $uri = $_SERVER['HTTP_REFERER'];
@@ -17,9 +19,9 @@ if (strpos($uri, 'free-text.php') !== false) {
     $post_type = 1;
 } elseif (strpos($uri, 'market-text.php') !== false) {
     $post_type = 2;
-} elseif (strpos($uri, 'suggestions.php') !== false) {
+} elseif (strpos($uri, 'suggestions-text.php') !== false) {
     $post_type = 3;
-} elseif (strpos($uri, 'qna.php') !== false) {
+} elseif (strpos($uri, 'qna-text.php') !== false) {
     $post_type = 4;
 }
 

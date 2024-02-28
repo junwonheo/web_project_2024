@@ -124,7 +124,7 @@ switch ($post_type) {
         break;
 }
 
-echo '<div class="pagination"><br>';
+echo '<div class="pagination">';
 if ($page > 1) {
     echo '<a class="pre" href="' . $post_type . '?page=' . ($page - 1) . '">이전</a>';
 }

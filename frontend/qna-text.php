@@ -30,15 +30,16 @@
 
   <section>
     <?php include '../board-text.php' ?>
-
+    <?php if($_SESSION['id'] == "admin"){ ?>
     <div class="comment_form">
       <h2>댓글 작성</h2>
-      <form method="post">
+      <form enctype="multipart/form-data" action="../write-comment.php?postid=<?php echo $post_id ?>" method="post">
         <label for="comment">댓글 내용</label>
         <textarea id="comment" name="comment" rows="4"></textarea>
         <button type="submit">등록</button>
       </form>
     </div>
+    <?php } ?>
 
     <div class="comment_list">
       <h2>댓글 목록</h2>

@@ -21,19 +21,19 @@ header {
     justify-content: flex-end;
 }
 
-.header-top a, 
+.header-top a,
 .header-top p {
     color: #fff;
     text-decoration: none;
     font-size: 14px;
-    margin-left: 10px;  
+    margin-left: 10px;
 }
 
 .header-top p {
     margin-top: 2px;
 }
 
-.header-top a:hover, 
+.header-top a:hover,
 .header-top p:hover {
     text-decoration: underline;
 }
@@ -64,13 +64,15 @@ nav {
     text-align: center;
     display: flex;
     justify-content: center;
-    align-items: center; /* 세로 방향에서 가운데 정렬 */
+    align-items: center;
+    /* 세로 방향에서 가운데 정렬 */
 }
 
 nav a {
     color: #fff;
     text-decoration: none;
-    margin: 7px 10px; /* 각 링크 사이의 간격 조절 */
+    margin: 7px 10px;
+    /* 각 링크 사이의 간격 조절 */
 }
 
 nav a:hover {
@@ -99,12 +101,14 @@ footer {
 #login-header {
     padding-top: 38px;
 }
+
 #login-section a {
     color: #ffcc00;
 }
 
 #login-section a:visited {
-    color: #ffcc00; /* 방문한 링크에 대한 색상 */
+    color: #ffcc00;
+    /* 방문한 링크에 대한 색상 */
 }
 
 #login-section {
@@ -197,6 +201,7 @@ footer {
 #register-section a {
     color: #ffcc00;
 }
+
 /*게시글 모아두는 박스*/
 section {
     max-width: 800px;
@@ -212,12 +217,13 @@ section {
     align-items: stretch;
     overflow: auto;
 }
-section a{
+
+section a {
     text-decoration: none;
     color: #333;
 }
 
-section a:visited{
+section a:visited {
     color: #333;
 }
 
@@ -228,7 +234,8 @@ article {
     margin: 20px;
     padding: 0px 15px;
     border-radius: 8px;
-    transition: transform 0.3s ease, background-color 0.3s ease; /* 트랜지션 효과 추가 */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    /* 트랜지션 효과 추가 */
     cursor: pointer;
     box-sizing: border-box;
     position: relative;
@@ -237,7 +244,8 @@ article {
 
 article:hover {
     transform: scale(1.02);
-    background-color: #f0f0f0; /* 마우스 호버 시 색상 변경 */
+    background-color: #f0f0f0;
+    /* 마우스 호버 시 색상 변경 */
 }
 
 article h3 {
@@ -251,21 +259,28 @@ article h4 {
 }
 
 #nick {
-    position: absolute; /* 절대 위치 지정 */
-    right: 20px; /* 오른쪽 여백 20px */
-    top: 3px; /* 위쪽에 위치 */
+    position: absolute;
+    /* 절대 위치 지정 */
+    right: 20px;
+    /* 오른쪽 여백 20px */
+    top: 3px;
+    /* 위쪽에 위치 */
 }
 
 #time {
-    position: absolute; /* 절대 위치 지정 */
-    right: 20px; /* 오른쪽 여백 20px */
-    top: 50px; /* 위쪽에 위치 */
+    position: absolute;
+    /* 절대 위치 지정 */
+    right: 20px;
+    /* 오른쪽 여백 20px */
+    top: 50px;
+    /* 위쪽에 위치 */
 }
 
 /*페이징*/
 .pagination {
     text-align: center;
 }
+
 .pagination a {
     margin: 5px;
 }
@@ -276,11 +291,18 @@ article h4 {
     display: inline;
     margin: 20px 30px 0px;
 }
+
 .info2 {
     float: right;
     display: inline;
     margin: 18px 30px 0px 80px;
 }
+
+.info3 {
+    float: right;
+    margin: 0px 10px 0px 80px;
+}
+
 .text {
     margin: 50px 20px 60px;
     color: #333;
@@ -291,14 +313,21 @@ article h4 {
     cursor: pointer;
     box-sizing: border-box;
 }
+
 .text .title {
     font-size: 30px;
-    margin-bottom: 5px;
+    margin: 5px 0px 5px 5px;
+    word-wrap: break-word;
+    max-width: 760px;
 }
+
 .text .content {
     font-size: 20px;
-    margin-bottom: 5px;
+    margin: 5px 0px 5px 5px;
+    word-wrap: break-word;
+    max-width: 760px;
 }
+
 img {
     display: block;
     margin: 0px auto;
@@ -312,12 +341,14 @@ img {
     background-color: #fff;
     box-sizing: border-box;
 }
+
 .comment_form h2 {
     font-size: 20px;
     margin-bottom: 10px;
     display: block;
     font-family: 'yangjin', sans-serif;
 }
+
 .comment_form textarea {
     display: block;
     width: 100%;
@@ -327,6 +358,7 @@ img {
     border: 1px solid #ddd;
     resize: vertical;
 }
+
 .comment_form button {
     border: none;
     padding: 8px 12px;
@@ -334,8 +366,8 @@ img {
     cursor: pointer;
     border-radius: 2px;
     font-family: 'yangjin', sans-serif;
-    display: block; 
-    margin: 0 auto; 
+    display: block;
+    margin: 0 auto;
     margin-top: 10px;
 }
 
@@ -353,6 +385,7 @@ img {
     margin-bottom: 10px;
     display: block;
 }
+
 .comment_list ul {
     list-style: none;
     padding: 0;
@@ -369,12 +402,14 @@ img {
     color: #555;
     margin: 5px 0px;
     margin-left: 15px;
+    min-height: 25px;
 }
 
 .comment_text {
+    word-wrap: break-word;
     font-size: 16px;
     margin: 0px 20px 10px;
-    width: 450px;
+    max-width: 700px;
 }
 
 /*글쓰기버튼*/
@@ -386,6 +421,7 @@ img {
     border-radius: 5px;
     cursor: pointer;
 }
+
 .write-post-btn:hover {
     background-color: #e6b800;
 }
@@ -425,7 +461,8 @@ label {
     margin-bottom: 8px;
     font-weight: bold;
 }
-#content_area{
+
+#content_area {
     width: 100%;
     height: 500px;
     padding: 8px;
@@ -452,10 +489,12 @@ label {
 #upload_content_button:hover {
     background-color: #e6b800;
 }
+
 #write-post-top {
     display: flex;
     justify-content: center;
 }
+
 #board-select {
     padding: 8px;
     margin: 10px 2px;
