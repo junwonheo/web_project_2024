@@ -1,0 +1,99 @@
+<!-- notice-board.html (공지사항) -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <title>장터 게시판</title>
+  </head>
+  <body>
+    <header>
+      <% if (login) { %>
+       
+        <div class="header-top">
+          <a><%= nickname %></a><button type="button" onclick="location.href='/logout'">로그아웃</button>
+        </div>
+      <% } else { %>
+        
+        <div class="header-top">
+          <a href="login">로그인</a>
+          <a href="register">회원가입</a>
+        </div>
+      <% } %>
+      <div class="header-main">
+        <h1 class="header-title"><a href="index">CodeSnack</a></h1>
+      </div>
+    </header>
+
+    <nav>
+      <!-- 검색 창 추가 -->
+      <div class="search-box">
+        <input type="text" placeholder="검색어를 입력하세요" />
+        <button type="button">검색</button>
+      </div>
+      <div class="nav-left">
+        <a href="index">홈</a> | <a href="notice-board">공지사항</a> |
+        <a href="free-board">자유 게시판</a> |
+        <a href="market-board">장터 게시판</a> |
+        <a href="suggestions-board">건의 게시판</a> |
+        <a href="qna-board">QnA 게시판</a> |
+        <a href="pointshop">포인트샵</a>
+      </div>
+      <button
+        class="write-post-btn"
+        onclick="location.href='write-post-page'"
+      >
+        글 쓰기
+      </button>
+    </nav>
+    <section>
+    
+      <div class="text">
+        <div class="title"><%= boards[0][0].title %></div>
+        <div class="content"><%= boards[0][0].content %></div>
+        <div class="image"><% if (boards[0][0].image) { %>
+          <img src="../<%= boards[0][0].image.replace(/\\/g, '/') %>">
+        <% } %></div>
+      </div>
+    
+        <div class="comment_form">
+          <!--댓글 작성 폼 -->
+          <h2>댓글 작성</h2>
+          <form method="post">
+            <label for="comment">댓글 내용</label>
+            <textarea id="comment" name="comment" rows="4"></textarea>
+            <button type="submit">등록</button>
+          </form>
+        </div>
+
+        <div class="comment_list">
+          <!-- 댓글 리스트 -->
+          <h2>댓글 목록</h2>
+          <ul>
+            <% for (let i = 0; i < totalcount ; i++ ){ %>
+            <li>
+              <div class="comment_info">
+                <span class="comment_author"><%= users[totalcount - i-1] %></span>
+              </div>
+              <div class="comment_text" style="position: relative;"><%= comment[0][totalcount - i-1].comment %>
+              <% 
+                let date = new Date(comment[0][totalcount - i-1].Timestamp);
+                let year = date.getFullYear();
+                let month = date.getMonth() + 1; // getMonth는 0부터 시작하므로 1을 더해줍니다.
+                let day = date.getDate();
+                let hours = date.getHours(); // 시간을 가져옵니다.
+                let minutes = date.getMinutes(); // 분을 가져옵니다.
+              %><div style="position: absolute; right: 0; bottom: 0; font-size: 10px;"><%= month %>-<%= day %> <%= hours %>:<%= minutes %></div>
+            </div>
+            </li>
+            <% } %>  
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer>© 2024 CodeSnack. All rights reserved.</footer>
+  </body>
+</html>

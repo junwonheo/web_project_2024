@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>로그인</title>
+</head>
+
+<body>
+    <header>
+        <div class="header-top">
+            <a href="login">로그인</a>
+            <a href="register">회원가입</a>
+        </div>
+        <div class="header-main">
+            <h1 class="header-title"><a href="index">CodeSnack</a></h1>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-left">
+            <a href="index">홈</a> | <a href="notice-board">공지사항</a> |
+            <a href="free-board">자유 게시판</a> |
+            <a href="market-board">장터 게시판</a> |
+            <a href="suggestions-board">건의 게시판</a> |
+            <a href="qna-board">QnA 게시판</a> |
+            <a href="pointshop">포인트샵</a>
+        </div>
+        <div class="search-box">
+            <input type="text" placeholder="검색어를 입력하세요">
+            <button type="button">검색</button>
+        </div>
+
+    </nav>
+
+    <section id="login-section">
+        <h2>로그인</h2>
+
+        <form action="/login" method="post">
+            <label for="id">아이디:</label>
+            <input type="text" id="id" name="id" required>
+
+            <label for="password">비밀번호:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit" id="login_button">로그인</button>
+        </form>
+
+        <p>아직 계정이 없으신가요? <a href="register">회원가입</a></p>
+        <p>아이디 혹은 비밀번호를 잊어버리셨나요? <br> <a href="find-id">아이디 찾기</a> <a href="find-pw">비밀번호 찾기</a></p>
+    </section>
+
+    <footer>
+        © 2024 CodeSnack. All rights reserved.
+    </footer>
+    <script>/*
+        document.getElementById("login_button").addEventListener("click", function (event) {
+            event.preventDefault(); // 폼 전송을 막음
+
+            var id = document.getElementById("id").value; // 아이디 입력값 가져오기
+            var password = document.getElementById("password").value; // 비밀번호 입력값 가져오기
+
+            fetch('login', {
+                method: 'POST',
+                body: JSON.stringify({ id: id, password: password }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // 로그인 성공
+                        alert('로그인 성공');
+                        
+                    } else {
+                        // 로그인 실패
+                        alert('아이디나 비밀번호 불일치');
+                        
+                    }
+                })
+                .catch(error => {
+                    console.error('오류 발생:', error);
+                });
+        });
+        /*
+            //로그인 기능
+             document.getElementById('login_button').addEventListener('click', function() {
+        
+              const id = document.getElementById('id').value;
+              const password = document.getElementById('password').value;
+              
+              const xhr = new XMLHttpRequest();  
+              xhr.open('GET', '/login_check?id=' + encodeURIComponent(id) + '&password=' + encodeURIComponent(password));
+               xhr.onload = function() {
+                if (xhr.status === 200)
+                {
+                  const response = JSON.parse(xhr.responseText);
+                  if (response.duplicate)
+                  {
+                    if (response.duplicate1)
+                    {
+                    alert('로그인 성공.');
+                    window.location.href = 'http://localhost:3000/html/index.html';
+                }
+                else
+                {
+                    alert('비밀번호 불일치.');
+                }
+            }
+            else {
+                  alert('아이디 불일치');
+                } 
+                 
+                } 
+              };
+              xhr.send();
+             });
+        
+            /*로그인 버튼 클릭 이벤트 핸들러
+            document.getElementById('login_button').addEventListener('click', function(event) {
+                event.preventDefault(); // 폼의 기본 동작인 페이지 이동을 막기 위해 이벤트를 취소합니다.
+        
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+        
+                // 서버로 로그인 요청
+                fetch('/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username: username,
+                        password: password
+                    })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert('로그인이 성공적으로 완료되었습니다.');
+                            // 로그인 후에 수행할 동작 또는 페이지 이동
+                        } else {
+                            alert('아이디 또는 비밀번호가 올바르지 않습니다.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error(error);
+                        alert('로그인에 실패했습니다.');
+                    });
+            });
+            document.getElementById('login_button').addEventListener('click', function() {
+                
+            })*/
+    </script>
+</body>
+
+</html>

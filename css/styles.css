@@ -25,7 +25,7 @@ header {
     color: #fff;
     text-decoration: none;
     font-size: 14px;
-    margin-left: 10px;  
+    margin-left: 10px;
 }
 
 .header-top a:hover {
@@ -58,13 +58,22 @@ nav {
     text-align: center;
     display: flex;
     justify-content: center;
-    align-items: center; /* 세로 방향에서 가운데 정렬 */
+    align-items: center;
+    /* 세로 방향에서 가운데 정렬 */
 }
 
 nav a {
     color: #fff;
     text-decoration: none;
-    margin: 7px 10px; /* 각 링크 사이의 간격 조절 */
+    margin: 7px 10px;
+    /* 각 링크 사이의 간격 조절 */
+}
+
+header a {
+    color: #fff;
+    text-decoration: none;
+    margin: 7px 10px;
+    /* 각 링크 사이의 간격 조절 */
 }
 
 nav a:hover {
@@ -77,6 +86,12 @@ nav a:hover {
     position: absolute;
 }
 
+.header-top {
+    display: flex;
+    align-items: center;
+
+}
+
 footer {
     background-color: #333;
     color: #fff;
@@ -84,16 +99,19 @@ footer {
     text-align: center;
     margin-top: auto;
 }
-#index-header-padding{
+
+#index-header-padding {
     height: 55px;
 }
-section h1{
+
+section h1 {
     text-decoration: none;
     color: #333;
     margin-left: 20px;
 }
+
 .buy-btn {
-    background-color:  #8cd19c;
+    background-color: #8cd19c;
     color: #333;
     padding: 3px 20px;
     border: none;
@@ -102,10 +120,11 @@ section h1{
     float: right;
     margin-right: 30px;
     margin-bottom: -10px;
-    
-    
-    
+
+
+
 }
+
 .buy-btn:hover {
     background-color: #8cd19c;
 }
@@ -114,12 +133,14 @@ section h1{
 #login-header {
     padding-top: 38px;
 }
+
 #login-section a {
     color: #ffcc00;
 }
 
 #login-section a:visited {
-    color: #ffcc00; /* 방문한 링크에 대한 색상 */
+    color: #ffcc00;
+    /* 방문한 링크에 대한 색상 */
 }
 
 #login-section {
@@ -224,8 +245,25 @@ section h1{
 #register-section a {
     color: #ffcc00;
 }
+
+
+
+.pagination {
+    position: absolute;
+    /* 절대적 위치 지정 */
+    bottom: 40px;
+    /* 섹션의 맨 아래에 위치시킴 */
+    left: 0;
+    /* 섹션의 왼쪽 끝에서 시작 */
+    right: 0;
+    /* 섹션의 오른쪽 끝까지 이어짐 */
+    display: flex;
+    justify-content: center;
+}
+
 /*게시글 모아두는 박스*/
 section {
+    position: relative;
     max-width: 800px;
     margin: 20px auto;
     background-color: #fff;
@@ -233,18 +271,19 @@ section {
     padding: 0px 10px;
     border-radius: 10px;
     box-sizing: border-box;
-    height: fit-content;
+    height: auto;
     width: 60%;
     height: 690px;
     align-items: stretch;
-    overflow: auto;
+    
 }
-section a{
+
+section a {
     text-decoration: none;
     color: #333;
 }
 
-section a:visited{
+section a:visited {
     color: #333;
 }
 
@@ -255,17 +294,26 @@ article {
     margin: 20px;
     padding-left: 15px;
     border-radius: 8px;
-    transition: transform 0.3s ease, background-color 0.3s ease; /* 트랜지션 효과 추가 */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    /* 트랜지션 효과 추가 */
+    position: relative;
     cursor: pointer;
     box-sizing: border-box;
 }
 
 article:hover {
     transform: scale(1.02);
-    background-color: #f0f0f0; /* 마우스 호버 시 색상 변경 */
+    background-color: #f0f0f0;
+    /* 마우스 호버 시 색상 변경 */
+}
+.date-text{
+    font-size: 0.8em;
+    position: absolute;
+    right: 5px;
+    bottom: 0;
 }
 /*상세정보*/
-.text{
+.text {
     margin-top: 5px;
     color: #333;
     padding: 8px 16px;
@@ -273,25 +321,30 @@ article:hover {
     border-radius: 5px;
     cursor: pointer;
 }
-.text .title{
+
+.text .title {
     font-size: 30px;
     margin-bottom: 5px;
-    
+
 }
-.text .content{
+
+.text .content {
     font-size: 20px;
     margin-bottom: 5px;
 }
+
 /*댓글*/
 .comment_form {
     margin-top: 20px;
 }
+
 .comment_form h2 {
     font-size: 20px;
     margin-bottom: 10px;
     display: block;
     font-family: 'yangjin', sans-serif;
 }
+
 .comment_form textarea {
     display: block;
     width: 100%;
@@ -309,8 +362,8 @@ article:hover {
     cursor: pointer;
     border-radius: 2px;
     font-family: 'yangjin', sans-serif;
-    display: block; 
-    margin: 0 auto; 
+    display: block;
+    margin: 0 auto;
     margin-top: 10px;
 }
 
@@ -324,6 +377,7 @@ article:hover {
     margin-bottom: 10px;
     display: block;
 }
+
 .comment_list ul {
     list-style: none;
     padding: 0;
@@ -355,6 +409,7 @@ article:hover {
     border-radius: 5px;
     cursor: pointer;
 }
+
 .write-post-btn:hover {
     background-color: #e6b800;
 }
@@ -380,6 +435,15 @@ article:hover {
     cursor: pointer;
 }
 
+.header-top button {
+    padding: 8px 16px;
+    background-color: #ffcc00;
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 .search-box button:hover {
     background-color: #e6b800;
 }
@@ -394,7 +458,8 @@ label {
     margin-bottom: 8px;
     font-weight: bold;
 }
-#content_area{
+
+#content_area {
     width: 100%;
     height: 500px;
     padding: 8px;
@@ -421,10 +486,12 @@ label {
 #upload_content_button:hover {
     background-color: #e6b800;
 }
+
 #write-post-top {
     display: flex;
     justify-content: center;
 }
+
 #board-select {
     padding: 8px;
     margin: 10px 2px;

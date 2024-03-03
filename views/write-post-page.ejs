@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>글쓰기</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-top">
+            <a href="login">로그인</a>
+            <a href="register">회원가입</a>
+        </div>
+        <div class="header-main">
+            <h1 class="header-title"><a href="index">CodeSnack</a></h1>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-left">
+            <a href="index">홈</a> | <a href="notice-board">공지사항</a> |
+            <a href="free-board">자유 게시판</a> |
+            <a href="market-board">장터 게시판</a> |
+            <a href="suggestions-board">건의게시판</a> |
+            <a href="qna-board">QnA 게시판</a> |
+            <a href="pointshop">포인트샵</a>
+        </div>
+        <div class="search-box">
+            <input type="text" placeholder="검색어를 입력하세요">
+            <button type="button">검색</button>
+        </div>
+
+    </nav>
+
+    <section id="upload_content">
+        <form enctype="multipart/form-data" action='/write-post-page' method="post">
+            <div id="write-post-top">
+
+                <select id="board-select" name="board">
+                    <option value="1">자유 게시판</option>
+                    <option value="2">장터 게시판</option>
+                    <option value="3">건의 게시판</option>
+                    <option value="4">QNA 게시판</option>
+                </select>
+
+                <input type="text" id="title" name="title" placeholder="제목을 입력하세요" required>
+            </div>
+            <label for="content">내용:</label>
+
+            <textarea id="content_area" name="content" rows="8" required></textarea>
+
+            <div id="upload_container">
+                <div>
+                    <label for="image">이미지 첨부:</label>
+                    <input type="file" id="image" name="image" accept="image/*">
+                </div>
+
+                <button id="upload_content_button" type="submit">글 올리기</button>
+            </div>
+        </form>
+    </section>
+
+    <footer>
+        © 2024 CodeSnack. All rights reserved.
+    </footer>
+    <script>
+        document.getElementById("upload_content_button").addEventListener("click", function (event) {
+            event.preventDefault(); // 폼 전송을 막음
+
+            var boardSelect = document.getElementById("board-select").value; // 게시판 선택값 가져오기
+            var title = document.getElementById("title").value; // 제목 입력값 가져오기
+            var content = document.getElementById("content_area").value;
+            var image = document.getElementById("image").files[0]; // 파일 객체 가져오기
+            var formData = new FormData();
+            formData.append('board', boardSelect);
+            formData.append('title', title);
+            formData.append('content', content);
+            formData.append('image', image);
+
+            fetch('/write-post-page', {
+                method: 'POST',
+                body: formData
+
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // 글쓰기 성공
+                        alert('글쓰기 완료');
+                        window.location.href = '/index';
+                    } else {
+                        // 글쓰기 실패
+                        alert('글쓰기 실패');
+                        window.location.href = '/write-post-page';
+                    }
+                })
+                .catch(error => {
+                    console.error('오류 발생:', error);
+                });
+        });/*
+        document.getElementById("upload_content_button").addEventListener("click", function (event) {
+    event.preventDefault();
+
+    const form = document.querySelector('#upload_content');
+    const boardSelect = document.querySelector('#board-select');
+    const titleInput = document.querySelector('#title');
+    const contentTextarea = document.querySelector('#content_area');
+    const imageInput = document.querySelector('#image');
+
+    const formData = new FormData();
+    formData.append('board', boardSelect.value);
+    formData.append('title', titleInput.value);
+    formData.append('content', contentTextarea.value);
+    formData.append('image', imageInput.files[0]);
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', '/write-post-page');
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            alert('글쓰기 완료');
+            window.location.href = '/html/free-board.html';
+            // 서버로부터의 응답을 처리합니다.
+        } else {
+            console.log('실패');
+            // 요청이 실패한 경우에 대한 처리를 수행합니다.
+        }
+    };
+
+    xhr.onerror = function () {
+        console.log('요청 실패');
+        // 요청 실패에 대한 처리를 수행합니다.
+    };
+
+    xhr.send(formData);
+});
+        /*
+        document.getElementById("upload_content_button").addEventListener("click", function (event) {
+            event.preventDefault();
+        const form = document.querySelector('#upload_content');
+        const boardSelect = document.querySelector('#board-select');
+        const titleInput = document.querySelector('#title');
+        const contentTextarea = document.querySelector('#content_area');
+        const imageInput = document.querySelector('#image');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const formData = new FormData();
+            formData.append('board', boardSelect.value);
+            formData.append('title', titleInput.value);
+            formData.append('content', contentTextarea.value);
+            formData.append('image', imageInput.files[0]);
+
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/write-post-page');
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    alert('글쓰기 완료');
+                    window.location.href = '/html/free-board.html';
+                    // 서버로부터의 응답을 처리합니다.
+                } else {
+                    console.log('실패');
+                    // 요청이 실패한 경우에 대한 처리를 수행합니다.
+                }
+            };
+
+            xhr.send(formData);
+        });
+    });*/
+    </script>
+</body>
+
+</html>
