@@ -5,8 +5,6 @@ $user_id = $_SESSION['userId'];
 $post_id = $_GET['postid'];
 $comment = $_POST['comment'];
 
-echo "<script>alert('" . $user_id . "');</script>";
-
 // current_time
 date_default_timezone_set('Asia/Seoul');
 $current_time = date('Y-m-d H:i:s');
